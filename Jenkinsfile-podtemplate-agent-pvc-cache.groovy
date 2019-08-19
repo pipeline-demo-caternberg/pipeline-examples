@@ -31,13 +31,12 @@ pipeline {
         volumeMounts:
          # directory location in container
         - mountPath: /cache
-          name: maven-cache
+          name: maven-repo
       volumes:
       - name: maven-cache
-        hostPath:
-          # directory location on host
-          path: /tmp
-          type: Directory
+        persistentVolumeClaim:
+          - mountPath: '/tmp/cache'
+            claimName: 'maven-repo'
           """
         }
     }
