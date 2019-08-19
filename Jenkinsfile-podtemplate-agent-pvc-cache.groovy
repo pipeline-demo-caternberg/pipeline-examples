@@ -28,11 +28,7 @@ pipeline {
         command:
         - cat
         tty: true
-        volumeMounts:
-         # directory location in container
-        - mountPath: /cache
-          name: maven-cache
-      volumes:
+    volumes:
       - name: maven-cache
         persistentVolumeClaim:
           - mountPath: '/tmp/cache'
