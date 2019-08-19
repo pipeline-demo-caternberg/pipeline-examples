@@ -8,8 +8,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "${A_VALUE}"
+                echo "THE CURRENT VALUE  IS:${A_VALUE}"
                 echo "${env.BUILD_ID}"
+                echo "##################################"
+                echo "ALL ENV VARIABLES:"
                 echo sh(script: 'env|sort', returnStdout: true)
             }
         }
