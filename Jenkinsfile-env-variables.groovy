@@ -10,7 +10,7 @@ pipeline {
             steps {
                 echo "${A_VALUE}"
                 echo "${env.BUILD_ID}"
-                echo "${currentBuild.result}"
+                echo sh(script: 'env|sort', returnStdout: true)
             }
         }
     }
