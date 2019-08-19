@@ -19,17 +19,17 @@ pipeline {
         command:
         - cat
         tty: true
-       volumeMounts:
-        - name: maven-cache
-          mountPath: /cache
+        volumeMounts:
+         - name: maven-cache
+           mountPath: /cache
       - name: maven-two
         image: maven:3.3.9-jdk-8-alpine
         command:
         - cat
         tty: true
         volumeMounts:
-        - name: maven-cache
-          mountPath: /cache
+         - name: maven-cache
+           mountPath: /cache
       volumes:
       - name: maven-cache
         persistentVolumeClaim:
