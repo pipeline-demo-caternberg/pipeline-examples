@@ -8,7 +8,6 @@ pipeline {
                    returnValue = input id: 'Inpu1', message: 'your input',
                             parameters: [string(defaultValue: 'myvalue',
                                     description: '',
-                                    name: 'TEXTINPUT',
                                     trim: true)],
                             submitter: 'admin',
                             submitterParameter: 'INPUTUSER'
