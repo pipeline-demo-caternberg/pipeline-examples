@@ -11,7 +11,7 @@ pipeline {
                                     trim: true)],
                             submitter: 'admin'
                 }
-                echo "entered value: ${returnValue} by user: ${INPUTUSER}"
+                echo "entered value: ${returnValue}"
             }
         }
 
