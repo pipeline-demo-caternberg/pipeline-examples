@@ -55,7 +55,7 @@ pipeline {
                     //just test if we can receive an artifact with curl.
                     sh 'curl http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-clean-plugin/2.5/maven-clean-plugin-2.5.jar -o /cache/test.jar'
                     sh "ls -la /cache"
-                    git 'https://github.com/cccaternberg/example-maven-api.git'
+                    git 'https://github.com/pipeline-demo-caternberg/example-maven-api-k8s.git'
                     sh 'ls -ltr'
                     sh "${MVN_COMMAND}"
                 }
@@ -64,7 +64,7 @@ pipeline {
         stage('Run another maven') {
             steps {
                 container('maven-two') {
-                    git 'https://github.com/cccaternberg/example-maven-api.git'
+                    git 'https://github.com/pipeline-demo-caternberg/example-maven-api-k8s.git'
                     sh "ls -la /cache"
                     sh "${MVN_COMMAND}"
                 }
