@@ -1,8 +1,9 @@
 pipeline {
     agent { node { label 'master' } }
     stages {
-        stage('Build') {
+        stage('hello World') {
             steps {
+                echo "Hello World"
                 sh 'ls -ltr /tmp'
             }
         }
