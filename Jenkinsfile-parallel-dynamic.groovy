@@ -1,27 +1,31 @@
-pipeline {
-    agent none
-    stages {
-        stage('init-stage') {
-            steps {
-                echo "This is the init stage"
+
+node (){
+    stage ("prepare"){
+        ["1", "2", "3"].each {
+            println "Item: $it"
+            // Write a text file there.
+            dir ("output"){
+                writeFile file: "${it}-test.txt", text: "$it",encoding: "UTF-8"
+
             }
         }
-        stage('run-parallel-branches') {
-            steps {
-                parallel(
-                        a: {
-                            echo "This is branch a"
-                        },
-                        b: {
-                            echo "This is branch b"
-                        }
-                )
-            }
+        stash name: "myTestFiles", includes: "output/*.*"
+    }
+    
+    stage('run-parallel') {
+        unstash "myTestFiles"
+        def files = findFiles glob: '**/*-test.txt'
+        files.each {file -> println file}
+        def parallelBranches = files.collectEntries { n ->
+            [(n): {
+                node('docker-cloud') {
+                    sh "sleep 10"
+                    echo "Done"
+                }
+            }]
         }
-        stage('last-stage') {
-            steps {
-                echo "This is the init stage"
-            }
-        }
+
+        parallel parallelBranches
+
     }
 }
