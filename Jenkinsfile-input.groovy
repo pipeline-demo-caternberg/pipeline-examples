@@ -13,7 +13,7 @@ pipeline {
                             submitter: 'admin',
                             submitterParameter: 'INPUTUSER'
                 }
-                echo "${returnValue} == ${TEXTINPUT} by user: ${INPUTUSER}"
+                echo "entered value: ${returnValue} by user: ${INPUTUSER}"
             }
         }
 
