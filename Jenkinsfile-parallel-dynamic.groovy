@@ -18,7 +18,7 @@ node (){
         files.each {file -> println file}
         def parallelBranches = files.collectEntries { n ->
             [(n): {
-                node('docker-cloud') {
+                node('cloudbees-core') {
                     sh "sleep 10"
                     echo "Done"
                 }
