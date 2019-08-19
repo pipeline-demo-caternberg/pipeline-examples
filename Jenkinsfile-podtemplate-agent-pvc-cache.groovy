@@ -31,7 +31,7 @@ pipeline {
         volumeMounts:
          # directory location in container
         - mountPath: /cache
-          name: maven-repo
+          name: maven-cache
       volumes:
       - name: maven-cache
         persistentVolumeClaim:
