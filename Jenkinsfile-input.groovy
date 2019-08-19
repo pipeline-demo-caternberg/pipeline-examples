@@ -5,14 +5,15 @@ pipeline {
             steps {
                 script {
                     //If agent other than "any" the ìput`should take place outside a agent definition!!!
-                    returnValue = input message:
-                    'Need some input' ,
-                    parameters:
-                    [string(defaultValue: '',
-                            description: '',
-                            name: 'Give me a value')]
+                   returnValue = input id: 'Inpu1', message: 'your input',
+                            parameters: [string(defaultValue: 'myvalue',
+                                    description: '',
+                                    name: 'TEXTINPUT',
+                                    trim: true)],
+                            submitter: 'admin',
+                            submitterParameter: 'INPUTUSER'
                 }
-                echo "${returnValue}"
+                echo "${returnValue} == ${TEXTINPUT} by user: ${INPUTUSER}"
             }
         }
 
