@@ -11,7 +11,7 @@ node (){
         }
         stash name: "myTestFiles", includes: "output/*.*"
     }
-    
+
     stage('run-parallel') {
         unstash "myTestFiles"
         def files = findFiles glob: '**/*-test.txt'
