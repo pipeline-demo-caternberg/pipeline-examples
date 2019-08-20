@@ -1,4 +1,5 @@
 import org.kohsuke.github.*
+
 // Redefine these variables for your installation
 String folder = '.'                                               // folder to put your jobs into
 String githubLogin = 'cccaternberg'                                   // github user login
@@ -11,7 +12,6 @@ String includes = '*'                                                // What bra
 String excludes = ''                                                // What branches to exclude
 String numToKeep = '5'                                              // Number of recent builds to keep. -1 for all of them
 String daysToKeep = '10'
-
 
 
 GitHub github = GitHub.connectUsingPassword(githubLogin, githubPassword)
@@ -60,3 +60,4 @@ pipelineJob('my-actual-pipeline') {
             lightweight(true)
         }
     }
+}
