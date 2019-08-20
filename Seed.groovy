@@ -28,7 +28,7 @@ for (int i = 0; i < repositories.size(); i++) {
 
     println $i
 }
-/**
+
 pipelineJob('my-actual-pipeline') {
     definition {
         cpsScmFlowDefinition {
@@ -60,4 +60,3 @@ pipelineJob('my-actual-pipeline') {
             lightweight(true)
         }
     }
-*/
