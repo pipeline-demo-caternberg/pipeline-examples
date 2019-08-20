@@ -2,8 +2,8 @@ import org.kohsuke.github.*
 
 // Redefine these variables for your installation
 String folder = '.'                                               // folder to put your jobs into
-String githubLogin = 'cccaternberg'                                   // github user login
-String githubPassword = '!develop01'                      // github user personal access token
+String githubLogin = 'acaternberg@cloudbees,com'                                   // github user login
+String githubPassword = 'ab673d6cf65a305c092d61edcb7625e072ab4162'                      // github user personal access token
 String githubOrganization = 'pipeline-demo-caternberg'                     // github organization
 String gitHubUrl = 'https://github.com/pipeline-demo-caternberg/pipeline-examples.git'
 String scanCredentials = 'scan-github-access'                       // credentials for scanning repository
