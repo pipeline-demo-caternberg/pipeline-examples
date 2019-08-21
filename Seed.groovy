@@ -14,7 +14,8 @@ String numToKeep = '5'                                              // Number of
 String daysToKeep = '10'
 
 
-GitHub github = GitHub.connectUsingPassword(githubLogin, githubPassword)
+//GitHub github = GitHub.connectUsingPassword(githubLogin, githubPassword)
+GitHub github = GitHub.connectUsingOAuth(githubLogin, githubPassword)
 rateLimitBefore = github.getRateLimit().remaining
 echo "API requests before: ${rateLimitBefore}"
 
