@@ -1,12 +1,13 @@
 import org.kohsuke.github.*
+import hudson.*
 
 // Redefine these variables for your installation
 String folder = '.'                                               // folder to put your jobs into
-String githubLogin = 'acaternberg@cloudbees.com'                                   // github user login
-String githubPassword = 'ab673d6cf65a305c092d61edcb7625e072ab4162'                      // github user personal access token
+String githubLogin = 'cccaternberg'                                   // github user login
+String githubPassword = '12193af6ef620119665a8c10c6394dd4e2ee4b56'                      // github user personal access token
 String githubOrganization = 'pipeline-demo-caternberg'                     // github organization
 String gitHubUrl = 'https://github.com/pipeline-demo-caternberg/pipeline-examples.git'
-String scanCredentials = 'scan-github-access'                       // credentials for scanning repository
+String scanCredentials = '12193af6ef620119665a8c10c6394dd4e2ee4b56'                       // credentials for scanning repository
 String checkoutCredentials = 'checkout-github-access'               // credentials for repository checkout
 String includes = '*'                                                // What branches to include
 String excludes = ''                                                // What branches to exclude
@@ -15,7 +16,7 @@ String daysToKeep = '10'
 
 
 //GitHub github = GitHub.connectUsingPassword(githubLogin, githubPassword)
-GitHub github = GitHub.connectUsingOAuth(githubLogin, githubPassword)
+GitHub github = GitHub.connectUsingOAuth(githubPassword)
 rateLimitBefore = github.getRateLimit().remaining
 echo "API requests before: ${rateLimitBefore}"
 
@@ -27,10 +28,10 @@ List repositories = github.getOrganization(githubOrganization).listRepositories(
 
 for (int i = 0; i < repositories.size(); i++) {
 
-    println $i
+    println i
 }
 
-pipelineJob('my-actual-pipeline') {
+pipelineJob ('Pipeline') {
     definition {
         cpsScmFlowDefinition {
             scm {
@@ -57,7 +58,7 @@ pipelineJob('my-actual-pipeline') {
                     doGenerateSubmoduleConfigurations(false)
                 }
             }
-            scriptPath('Jenkinsfile')
+            // scriptPath('Jenkinsfile')
             lightweight(true)
         }
     }
