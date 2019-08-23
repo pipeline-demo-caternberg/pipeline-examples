@@ -2,12 +2,12 @@ import org.kohsuke.github.*
 import hudson.*
 
 
-def createPipelineJobs() {
-    println("createPipelineJobs")
+def createPipelineJobs(String ghAccessToken) {
+    println("createPipelineJobs with GHTOKEN: §${ghAccessToken}")
 // Redefine these variables for your installation
     String folder = '.'                                               // folder to put your jobs into
-    String githubLogin = 'cccaternberg'                                   // github user login
-    String githubPassword = '3b2ffac6accd9cea58a7a347c1e15a4ee68e7ded'
+    //String githubLogin = 'cccaternberg'                                   // github user login
+   // String githubPassword = '3b2ffac6accd9cea58a7a347c1e15a4ee68e7ded'
     // github user personal access token
     String githubOrganization = 'pipeline-demo-caternberg'                     // github organization
     String gitHubUrl = 'https://github.com/pipeline-demo-caternberg/pipeline-examples.git'
