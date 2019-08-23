@@ -7,7 +7,7 @@ def createPipelineJobs() {
 // Redefine these variables for your installation
     String folder = '.'                                               // folder to put your jobs into
     String githubLogin = 'cccaternberg'                                   // github user login
-    String githubPassword = '12193af6ef620119665a8c10c6394dd4e2ee4b56'
+    String githubPassword = '3b2ffac6accd9cea58a7a347c1e15a4ee68e7ded'
     // github user personal access token
     String githubOrganization = 'pipeline-demo-caternberg'                     // github organization
     String gitHubUrl = 'https://github.com/pipeline-demo-caternberg/pipeline-examples.git'
