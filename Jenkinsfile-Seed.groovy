@@ -4,8 +4,12 @@ pipeline {
         stage('buildLib') {
             steps {
                 container ('gradle'){
+                    script {
+                        println System.getProperty("java.ext.dirs")
+                    }
                     echo "Hello World"
                     sh 'gradle clean lib'
+                    sh 'cp -f lib/*.jar  ~/.groovy/grapes/'
                 }
             }
         }
