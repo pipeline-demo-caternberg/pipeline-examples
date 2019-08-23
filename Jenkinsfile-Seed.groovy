@@ -12,7 +12,9 @@ pipeline {
                     sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/'
                     // point to exact source file
                     script {
-                        def seed = load "$(pwd)/Seed.groovy"
+
+                        def rootDir = pwd()
+                        def seed = load "${rootDir}/Seed.groovy"
                         seed.createPipelineJobs()
                     }
 
