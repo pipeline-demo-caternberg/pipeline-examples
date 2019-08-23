@@ -9,7 +9,7 @@ pipeline {
                     }
                     echo "Hello World"
                     sh 'gradle clean lib'
-                    sh 'cp -f lib/*.jar  ~/.groovy/grapes/'
+                    sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/'
                 }
             }
         }
