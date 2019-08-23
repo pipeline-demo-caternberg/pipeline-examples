@@ -10,13 +10,20 @@ pipeline {
                     echo "Hello World"
                     sh 'gradle clean lib'
                     sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/'
+                    // point to exact source file
+                    script {
+                        def seed = load "${rootDir}/Seed.groovy"
+                        seed.createPipelineJobs()
+                    }
+
                 }
             }
         }
         stage('SetClasspath') {
             steps {
                 echo "addToClasspath"
-                sh 'addToClasspath lib/*.jar'
+
+             // sh 'addToClasspath lib/*.jar'
             }
         }
     }
