@@ -3,7 +3,7 @@ import hudson.*
 
 
 def createPipelineJobs(String ghAccessToken) {
-    println("createPipelineJobs with GHTOKEN: §${ghAccessToken}")
+    println("createPipelineJobs with GHTOKEN: ${ghAccessToken}")
 // Redefine these variables for your installation
     String folder = '.'                                               // folder to put your jobs into
     //String githubLogin = 'cccaternberg'                                   // github user login
