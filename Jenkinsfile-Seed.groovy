@@ -15,9 +15,10 @@ pipeline {
                         withCredentials([string(credentialsId: 'githubaccesstoken', variable: 'GH_ACCESS_TOKEN')]) {
                             apiKey = "\nAPI key: ${GH_ACCESS_TOKEN}\n"
                             println apiKey
+                            echo env.GH_ACCESS_TOKEN
                             def rootDir = pwd()
                             def seed = load "${rootDir}/Seed.groovy"
-                            seed.createPipelineJobs(${GH_ACCESS_TOKEN})
+                            seed.createPipelineJobs(env.GH_ACCESS_TOKEN)
                         }
                     }
                     println apiKey
