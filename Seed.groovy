@@ -23,11 +23,10 @@ echo "API requests before: ${rateLimitBefore}"
 // you can say that using .each({ repo -> .... }) would make sense
 // I would say that too.
 // But Jenkins does not agree with us
-// so @see: https://issues.jenkins-ci.org/browse/JENKINS-26481<<<<<<<<
+// so @see: https://issues.jenkins-ci.org/browse/JENKINS-26481
 GHOrganization ghOrganization = github.getOrganization(githubOrganization)
 List repositories = ghOrganization.listRepositories(100).asList()
-for
-each {}
+
 for (int i = 0; i < repositories.size(); i++) {
     GHRepository repo = (GHRepository) repositories.get(i)
     println repo.getName()
