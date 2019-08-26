@@ -6,14 +6,8 @@ def createPipelineJobs(String ghAccessToken) {
     println("createPipelineJobs with ghAccessToken: ${ghAccessToken}")
 // Redefine these variables for your installation
     String folder = '.'                                               // folder to put your jobs into
-    //String githubLogin = 'cccaternberg'                                   // github user login
-   // String githubPassword = '3b2ffac6accd9cea58a7a347c1e15a4ee68e7ded'
-    // github user personal access token
     String githubOrganization = 'pipeline-demo-caternberg'                     // github organization
     String gitHubUrl = 'https://github.com/pipeline-demo-caternberg/pipeline-examples.git'
-    String scanCredentials = '890e1a53fb78cba53a4d61f50b5ff48899f53832'
-    // credentials for scanning repository
-    String checkoutCredentials = 'checkout-github-access'               // credentials for repository checkout
     String includes = '*'                                                // What branches to include
     String excludes = ''                                                // What branches to exclude
     String numToKeep = '5'
@@ -21,7 +15,7 @@ def createPipelineJobs(String ghAccessToken) {
     String daysToKeep = '10'
 
 
-//GitHub github = GitHub.connectUsingPassword(githubLogin, githubPassword)
+    //GitHub github = GitHub.connectUsingPassword(githubLogin, githubPassword)
     GitHub github = GitHub.connectUsingOAuth(ghAccessToken)
     rateLimitBefore = github.getRateLimit().remaining
     echo "API requests before: ${rateLimitBefore}"
@@ -33,8 +27,8 @@ def createPipelineJobs(String ghAccessToken) {
     List repositories = github.getOrganization(githubOrganization).listRepositories(100).asList()
 
     for (int i = 0; i < repositories.size(); i++) {
-
-        println i
+        GitHubRepositrory repo = (GitHubRepositrory) repositories.get(i)
+        println repo.getName()
     }
 
     pipelineJob('Pipeline') {
