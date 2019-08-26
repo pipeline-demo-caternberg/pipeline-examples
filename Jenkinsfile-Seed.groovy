@@ -15,11 +15,10 @@ pipeline {
                        script {
                            apiKey = "\nAPI key: ${GH_ACCESS_TOKEN}\n"
                            println apiKey
-                          //  def rootDir = pwd()
-                            //def seed = load "${rootDir}/Seed.groovy"
-                           // seed.createPipelineJobs("${GH_ACCESS_TOKEN}")
+                           def rootDir = pwd()
+                           def seed = load "${rootDir}/Seed.groovy"
+                           seed.createPipelineJobs(${GH_ACCESS_TOKEN})
                         }
-                        println apiKey
                     }
                     println apiKey
                 }

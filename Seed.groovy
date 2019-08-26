@@ -22,7 +22,7 @@ def createPipelineJobs(String ghAccessToken) {
 
 
 //GitHub github = GitHub.connectUsingPassword(githubLogin, githubPassword)
-    GitHub github = GitHub.connectUsingOAuth(ghAccessToken)
+    GitHub github = GitHub.connectUsingOAuth(scanCredentials)
     rateLimitBefore = github.getRateLimit().remaining
     echo "API requests before: ${rateLimitBefore}"
 
