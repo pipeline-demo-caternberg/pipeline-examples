@@ -27,7 +27,7 @@ def createPipelineJobs(String ghAccessToken) {
     List repositories = github.getOrganization(githubOrganization).listRepositories(100).asList()
 
     for (int i = 0; i < repositories.size(); i++) {
-        GitHubRepositrory repo = (GitHubRepositrory) repositories.get(i)
+        GHRepository repo = (GHRepository) repositories.get(i)
         println repo.getName()
     }
 
