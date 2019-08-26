@@ -11,6 +11,11 @@ pipeline {
                     sh 'gradle clean lib'
                     sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/'
                     // point to exact source file
+                    withCredentials([string(credentialsId: 'githubaccesstoken',
+                            variable: 'GH_ACCESS_TOKEN')]) {
+                        apiKey = "\nAPI key: ${GH_ACCESS_TOKEN}\n"
+                    }
+                    println apiKey
                     withCredentials([string(credentialsId: 'githubaccesstoken', variable: 'GH_ACCESS_TOKEN')]) {
                       echo "GHTOKE: ${GH_ACCESS_TOKEN}"
                        script {
