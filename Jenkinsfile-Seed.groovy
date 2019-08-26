@@ -11,13 +11,13 @@ pipeline {
                     sh 'gradle clean lib'
                     sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/'
                     withCredentials([string(credentialsId: 'githubaccesstoken', variable: 'GH_ACCESS_TOKEN')]) {
-
+                        echo sh(script: 'env|sort', returnStdout: true)
                         jobDsl targets: ['Seed.groovy'].join('\n'),
                                 removedJobAction: 'DELETE',
                                 removedViewAction: 'DELETE',
                                 lookupStrategy: 'SEED_JOB',
                                 additionalClasspath: ['lib/*.jar'].join('\n'),
-                                additionalParameters: [message: 'Hello from pipeline', credentials: 'githubaccesstoken']
+                                additionalParameters: [credentials: ${GH_ACCESS_TOKEN}]
                     }
                     // point to exact source file
                  /*
