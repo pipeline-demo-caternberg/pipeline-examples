@@ -16,7 +16,7 @@ String daysToKeep = '10'
 
 
 //GitHub github = GitHub.connectUsingPassword(githubLogin, githubPassword)
-pribtln "TOKEN ${credentials}"
+println "TOKEN ${credentials}"
 GitHub github = GitHub.connectUsingOAuth(env.githubaccesstoken)
 rateLimitBefore = github.getRateLimit().remaining
 echo "API requests before: ${rateLimitBefore}"
