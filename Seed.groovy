@@ -38,7 +38,7 @@ List<GHContent> ghContentList = ghRepository.getDirectoryContent(".")
 for (ghContent in ghContentList) {
     println(ghContent.name)
     if (ghContent.isFile() && ghContent.getName().startsWith("Jenkinsfle-")) {
-        println(g"generate " + hContent.name)
+        println("generate ${ghContent.name}" )
         pipelineJob(ghContent.getName()) {
             definition {
                 cpsScmFlowDefinition {
