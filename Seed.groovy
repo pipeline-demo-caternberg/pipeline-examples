@@ -34,7 +34,7 @@ for (int i = 0; i < repositories.size(); i++) {
 
 GHRepository ghRepository = ghOrganization.getRepository("pipeline-examples")
 List<GHContent> ghContentList = ghRepository.getDirectoryContent(".")
-for (ghContent : ghContentList) {
+for (ghContent in ghContentList) {
     if (ghContent.isFile() && ghContent.getName().startsWith("Jenkinsfle-")) {
         pipelineJob(ghContent.getName()) {
             definition {
