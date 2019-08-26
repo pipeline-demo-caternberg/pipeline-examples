@@ -7,7 +7,6 @@ pipeline {
                     script {
                         println System.getProperty("java.ext.dirs")
                     }
-                    echo "Hello World"
                     sh 'gradle clean lib'
                     sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/'
                     withCredentials([string(credentialsId: 'githubaccesstoken', variable: 'GH_ACCESS_TOKEN')]) {

@@ -19,7 +19,7 @@ String daysToKeep = '10'
 println "TOKEN ${credentials}"
 GitHub github = GitHub.connectUsingOAuth(credentials)
 rateLimitBefore = github.getRateLimit().remaining
-echo "API requests before: ${rateLimitBefore}"
+//echo "API requests before: ${rateLimitBefore}"
 
 // you can say that using .each({ repo -> .... }) would make sense
 // I would say that too.
