@@ -11,7 +11,7 @@ def createPipelineJobs(String ghAccessToken) {
     // github user personal access token
     String githubOrganization = 'pipeline-demo-caternberg'                     // github organization
     String gitHubUrl = 'https://github.com/pipeline-demo-caternberg/pipeline-examples.git'
-    String scanCredentials = '12193af6ef620119665a8c10c6394dd4e2ee4b56'
+    String scanCredentials = '890e1a53fb78cba53a4d61f50b5ff48899f53832'
     // credentials for scanning repository
     String checkoutCredentials = 'checkout-github-access'               // credentials for repository checkout
     String includes = '*'                                                // What branches to include
@@ -22,7 +22,7 @@ def createPipelineJobs(String ghAccessToken) {
 
 
 //GitHub github = GitHub.connectUsingPassword(githubLogin, githubPassword)
-    GitHub github = GitHub.connectUsingOAuth(githubPassword)
+    GitHub github = GitHub.connectUsingOAuth(ghAccessToken)
     rateLimitBefore = github.getRateLimit().remaining
     echo "API requests before: ${rateLimitBefore}"
 
