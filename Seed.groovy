@@ -3,7 +3,7 @@ import hudson.*
 
 
 def createPipelineJobs(String ghAccessToken) {
-    println("createPipelineJobs with GHTOKEN: ${ghAccessToken}")
+    println("createPipelineJobs with ghAccessToken: ${ghAccessToken}")
 // Redefine these variables for your installation
     String folder = '.'                                               // folder to put your jobs into
     //String githubLogin = 'cccaternberg'                                   // github user login
@@ -29,7 +29,7 @@ def createPipelineJobs(String ghAccessToken) {
 // you can say that using .each({ repo -> .... }) would make sense
 // I would say that too.
 // But Jenkins does not agree with us
-// so @see: https://issues.jenkins-ci.org/browse/JENKINS-26481
+// so @see: https://issues.jenkins-ci.org/browse/JENKINS-26481<<<<<<<<
     List repositories = github.getOrganization(githubOrganization).listRepositories(100).asList()
 
     for (int i = 0; i < repositories.size(); i++) {

@@ -12,10 +12,11 @@ pipeline {
                     sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/'
                     // point to exact source file
                     withCredentials([string(credentialsId: 'githubaccesstoken', variable: 'GH_ACCESS_TOKEN')]) {
-                        script {
+                      echo "GHTOKE: ${GH_ACCESS_TOKEN}"
+                       script {
                             def rootDir = pwd()
                             def seed = load "${rootDir}/Seed.groovy"
-                            seed.createPipelineJobs(${GH_ACCESS_TOKEN})
+                            seed.createPipelineJobs("${GH_ACCESS_TOKEN}")
                         }
                     }
                 }
