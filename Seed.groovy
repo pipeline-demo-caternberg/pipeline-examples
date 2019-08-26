@@ -1,5 +1,7 @@
 import org.kohsuke.github.*
 import hudson.*
+import org.apache.commons.io.FilenameUtils;
+
 
 
 //def createPipelineJobs(String ghAccessToken) {
@@ -39,7 +41,8 @@ for (ghContent in ghContentList) {
     println(ghContent.name)
     if (ghContent.isFile() && ghContent.getName().startsWith("Jenkinsfile-")) {
         println("generate ${ghContent.name}" )
-        pipelineJob(ghContent.getName()) {
+        String fileNameWithOutExt = FilenameUtils.removeExtension(ghContent.name)
+        pipelineJob(fileNameWithOutExt) {
             definition {
                 cpsScmFlowDefinition {
                     scm {
