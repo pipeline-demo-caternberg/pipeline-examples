@@ -9,7 +9,7 @@ configurations {
 }
 
 dependencies {
-    libs 'org.kohsuke:github-api:1.70'
+    libs 'org.kohsuke:github-api:1.95'
 }
 
 task clean(type: Delete) {
