@@ -7,7 +7,7 @@ import org.apache.commons.io.FilenameUtils;
 //def createPipelineJobs(String ghAccessToken) {
 //   println("createPipelineJobs with ghAccessToken: ${ghAccessToken}")
 // Redefine these variables for your installation
-String folder = '.'                                               // folder to put your jobs into
+String genFolder = 'pipeline-examples-gen'                                               // folder to put your jobs into
 String githubOrganization = 'pipeline-demo-caternberg'                     // github organization
 String gitHubUrl = 'https://github.com/pipeline-demo-caternberg/pipeline-examples.git'
 String includes = '*'                                                // What branches to include
@@ -21,7 +21,7 @@ String daysToKeep = '10'
 println "TOKEN ${credentials}"
 GitHub github = GitHub.connectUsingOAuth("${credentials}")
 rateLimitBefore = github.getRateLimit().remaining
-//echo "API requests before: ${rateLimitBefore}"
+echo "API requests before: ${rateLimitBefore}"
 
 // you can say that using .each({ repo -> .... }) would make sense
 // I would say that too.
@@ -35,6 +35,13 @@ for (int i = 0; i < repositories.size(); i++) {
     println repo.getName()
 }
 
+
+
+
+folder("${genFolder}") {
+    description("Folder containing all generated pipelones from $gitHubUrl")
+}
+
 GHRepository ghRepository = ghOrganization.getRepository("pipeline-examples")
 List<GHContent> ghContentList = ghRepository.getDirectoryContent(".")
 for (ghContent in ghContentList) {
@@ -42,7 +49,7 @@ for (ghContent in ghContentList) {
     if (ghContent.isFile() && ghContent.getName().startsWith("Jenkinsfile-")) {
         println("generate ${ghContent.name}" )
         String fileNameWithOutExt = FilenameUtils.removeExtension(ghContent.name)
-        pipelineJob(fileNameWithOutExt) {
+        pipelineJob("${genFolder}/${fileNameWithOutExt}") {
             definition {
                 cpsScmFlowDefinition {
                     scm {
