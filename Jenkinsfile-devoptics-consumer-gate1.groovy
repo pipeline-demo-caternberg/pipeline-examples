@@ -16,7 +16,12 @@ pipeline {
         }
         stage('meta-info') {
             steps {
-                curlEventCause
+                container("curl") {
+                    withCredentials([string(credentialsId: 'jenkinsuserandtoken', variable: 'ADMINTOKEN')]) {
+                        echo "TOKEN: $ADMINTOKEN"
+                        curlEventCause "$ADMINTOKEN"
+                    }
+                }
             }   //  sh "env"
         }
     }
