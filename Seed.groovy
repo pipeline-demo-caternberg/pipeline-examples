@@ -43,7 +43,7 @@ folder("${genFolder}") {
 }
 
 GHRepository ghRepository = ghOrganization.getRepository("pipeline-examples")
-List<GHContent> ghContentList = ghRepository.getDirectoryContent(".")
+List<GHContent> ghContentList = ghRepository.getDirectoryContent("./jobs/")
 for (ghContent in ghContentList) {
     println(ghContent.name)
     if (ghContent.isFile() && ghContent.getName().startsWith("Jenkinsfile-")) {
