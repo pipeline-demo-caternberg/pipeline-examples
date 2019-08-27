@@ -76,6 +76,3 @@ for (ghContent in ghContentList) {
         }
     }
 }
-//}
-
-//return this

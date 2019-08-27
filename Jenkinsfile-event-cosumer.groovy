@@ -4,21 +4,21 @@ pipeline {
     master executors has to be increased from default `0` to ```to get this executed ton master
     agent { label 'master'}
     */
-    agent { label "cloudbees-core"}
+    agent { label "cloudbees-core" }
     triggers {
         eventTrigger jmespathQuery("contains(event,'com.example:' && '-SNAPSHOT')")
     }
 
     stages {
         stage('Example') {
-
             steps {
-                container ("curl"){
-                    curlEventCause
+                container("curl") {
+                    withCredentials([string(credentialsId: 'jenkinsuserandtoken', variable: 'ADMINTOKEN')]) {
+                        echo "TOKEN: $ADMINTOKEN"
+                        curlEventCause "$ADMINTOKEN"
+                    }
                 }
-
             }
         }
-
     }
 }
