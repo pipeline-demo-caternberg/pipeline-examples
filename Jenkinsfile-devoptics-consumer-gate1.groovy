@@ -18,7 +18,6 @@ pipeline {
             steps {
                 container("curl") {
                     withCredentials([string(credentialsId: 'jenkinsuserandtoken', variable: 'ADMINTOKEN')]) {
-                        echo "TOKEN: $ADMINTOKEN"
                         curlEventCause "$ADMINTOKEN"
                     }
                 }
