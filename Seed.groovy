@@ -44,46 +44,40 @@ folder("${genFolder}") {
  */
 
 GHRepository ghRepository = ghOrganization.getRepository("pipeline-examples")
-List<GHContent> ghContentList = ghRepository.getDirectoryContent(".")
+List<GHContent> ghContentList = ghRepository.getDirectoryContent("jobs")
 for (ghContent in ghContentList) {
-    if (ghContent.isDirectory() && ghContent.getName().startsWith("jobs")) {
-        println("generate 1")
-        List<GHContent> jobs = ghContent.getDirectoryContent("jobs")
-        for (jenkinsFile in jobs) {
-            println("generate ${jenkinsFile.name}")
-            if (jenkinsFile.getName().startsWith("Jenkinsfile-"))
-                String fileNameWithOutExt = FilenameUtils.removeExtension(ghContent.name)
-            println("generate ${fileNameWithOutExt}")
-            pipelineJob("${genFolder}/${fileNameWithOutExt}") {
-                definition {
-                    cpsScmFlowDefinition {
-                        scm {
-                            gitSCM {
-                                userRemoteConfigs {
-                                    userRemoteConfig {
-                                        credentialsId('')
-                                        name('')
-                                        refspec('')
-                                        url("${gitHubUrl}")
-                                    }
+    if (ghContent.isFile() && ghContent.getName().startsWith("Jenkinsfile")) {
+        String fileNameWithOutExt = FilenameUtils.removeExtension(ghContent.name)
+        println("generate ${fileNameWithOutExt}")
+        pipelineJob("${genFolder}/${fileNameWithOutExt}") {
+            definition {
+                cpsScmFlowDefinition {
+                    scm {
+                        gitSCM {
+                            userRemoteConfigs {
+                                userRemoteConfig {
+                                    credentialsId('')
+                                    name('')
+                                    refspec('')
+                                    url("${gitHubUrl}")
                                 }
-                                branches {
-                                    branchSpec {
-                                        name('*/master')
-                                    }
-                                }
-                                browser {
-                                    gitWeb {
-                                        repoUrl('')
-                                    }
-                                }
-                                gitTool('')
-                                doGenerateSubmoduleConfigurations(false)
                             }
+                            branches {
+                                branchSpec {
+                                    name('*/master')
+                                }
+                            }
+                            browser {
+                                gitWeb {
+                                    repoUrl('')
+                                }
+                            }
+                            gitTool('')
+                            doGenerateSubmoduleConfigurations(false)
                         }
-                        scriptPath(ghContent.getName())
-                        lightweight(true)
                     }
+                    scriptPath(ghContent.getName())
+                    lightweight(true)
                 }
             }
         }
