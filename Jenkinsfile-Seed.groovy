@@ -35,11 +35,5 @@ pipeline {
                 }
             }
         }
-        stage('SetClasspath') {
-            steps {
-                echo "addToClasspath"
-                // sh 'addToClasspath lib/*.jar'
-            }
-        }
     }
 }
