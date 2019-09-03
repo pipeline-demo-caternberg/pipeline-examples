@@ -76,7 +76,7 @@ for (ghContent in ghContentList) {
                             doGenerateSubmoduleConfigurations(false)
                         }
                     }
-                    scriptPath(ghContent.getName())
+                    scriptPath("jobs/" + ghContent.getName())
                     lightweight(true)
                 }
             }
