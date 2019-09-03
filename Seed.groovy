@@ -3,7 +3,6 @@ import hudson.*
 import org.apache.commons.io.FilenameUtils;
 
 
-
 //def createPipelineJobs(String ghAccessToken) {
 //   println("createPipelineJobs with ghAccessToken: ${ghAccessToken}")
 // Redefine these variables for your installation
@@ -25,13 +24,10 @@ println "API requests before: ${rateLimitBefore}"
 GHOrganization ghOrganization = github.getOrganization(githubOrganization)
 
 /**
-List repositories = ghOrganization.listRepositories(100).asList()
+ List repositories = ghOrganization.listRepositories(100).asList()
 
-for (int i = 0; i < repositories.size(); i++) {
-    GHRepository repo = (GHRepository) repositories.get(i)
-    println repo.getName()
-}
-*/
+ for (int i = 0; i < repositories.size(); i++) {GHRepository repo = (GHRepository) repositories.get(i)
+ println repo.getName()}*/
 
 
 /**
@@ -50,39 +46,43 @@ folder("${genFolder}") {
 GHRepository ghRepository = ghOrganization.getRepository("pipeline-examples")
 List<GHContent> ghContentList = ghRepository.getDirectoryContent(".")
 for (ghContent in ghContentList) {
-    String fileNameWithOutExt = FilenameUtils.removeExtension(ghContent.name)
-    println(fileNameWithOutExt)
-    if (ghContent.isFile() && ghContent.getName().startsWith("Jenkinsfile-")) {
-        println("generate ${fileNameWithOutExt}" )
-        pipelineJob("${genFolder}/${fileNameWithOutExt}") {
-            definition {
-                cpsScmFlowDefinition {
-                    scm {
-                        gitSCM {
-                            userRemoteConfigs {
-                                userRemoteConfig {
-                                    credentialsId('')
-                                    name('')
-                                    refspec('')
-                                    url("${gitHubUrl}")
+
+    if (ghContent.isDirectory()() && ghContent.getName().startsWith("jobs")) {
+        List<GHContent> jobs = ghContent.getDirectoryContent("jobs")
+        for (jenkinsFile in jobs) {
+            if (jenkinsFile.getName().startsWith("Jenkinsfile-"))
+                String fileNameWithOutExt = FilenameUtils.removeExtension(ghContent.name)
+            println("generate ${fileNameWithOutExt}")
+            pipelineJob("${genFolder}/${fileNameWithOutExt}") {
+                definition {
+                    cpsScmFlowDefinition {
+                        scm {
+                            gitSCM {
+                                userRemoteConfigs {
+                                    userRemoteConfig {
+                                        credentialsId('')
+                                        name('')
+                                        refspec('')
+                                        url("${gitHubUrl}")
+                                    }
                                 }
-                            }
-                            branches {
-                                branchSpec {
-                                    name('*/master')
+                                branches {
+                                    branchSpec {
+                                        name('*/master')
+                                    }
                                 }
-                            }
-                            browser {
-                                gitWeb {
-                                    repoUrl('')
+                                browser {
+                                    gitWeb {
+                                        repoUrl('')
+                                    }
                                 }
+                                gitTool('')
+                                doGenerateSubmoduleConfigurations(false)
                             }
-                            gitTool('')
-                            doGenerateSubmoduleConfigurations(false)
                         }
+                        scriptPath(ghContent.getName())
+                        lightweight(true)
                     }
-                    scriptPath(ghContent.getName())
-                    lightweight(true)
                 }
             }
         }
