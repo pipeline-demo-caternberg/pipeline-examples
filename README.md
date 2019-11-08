@@ -63,5 +63,3 @@ see
 * https://www.thenativeweb.io/blog/2018-08-14-11-32-kubernetes-building-docker-images-within-a-cluster/
 
 
-kubectl create secret docker-registry gcr-json-key   --docker-server=gcr.io   --docker-username=_json_key   --docker-password="$(cat ~/Downloads/ps-dev-ef65ab901406.json)"  --docker-email=acaternberg@cloudbees.com
-kubectl patch
