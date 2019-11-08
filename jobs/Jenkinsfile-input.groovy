@@ -19,7 +19,7 @@ pipeline {
         stage('Say Hello2') {
             agent {
                 kubernetes {
-                    yamlFile 'yanl/podTemplate.yml'
+                    yamlFile 'yaml/podTemplate.yml'
                 }
             }
             steps {
