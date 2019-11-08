@@ -1,4 +1,4 @@
-odTemplate( label 'mypod', yaml 'yaml/podTemplate.yml')
+odTemplate( label: 'mypod', yaml: 'yaml/podTemplate.yml')
 node ("mypod"){
     stage ("prepare"){
         ["1", "2", "3"].each {
