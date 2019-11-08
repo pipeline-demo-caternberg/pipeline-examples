@@ -1,5 +1,5 @@
-
-node (){
+odTemplate( label 'mypod', yaml 'yaml/podTemplate.yml')
+node ("mypod"){
     stage ("prepare"){
         ["1", "2", "3"].each {
             println "Item: $it"
@@ -18,18 +18,12 @@ node (){
         files.each {file -> println file}
         def parallelBranches = files.collectEntries { n ->
             [(n): {
-                agent {
-                    kubernetes {
-                        yamlFile 'yaml/podTemplate.yml'
-                    }
-                }
-
-                container("curl") {
-                    sh "sleep 10"
-                    echo "Done"
-                }
-
-            }]
+             node("mypod")
+             {
+                 sh "sleep 10"
+                 echo "Done"
+             }
+             }]
         }
 
         parallel parallelBranches
