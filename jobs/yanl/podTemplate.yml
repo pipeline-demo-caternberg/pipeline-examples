@@ -1,7 +1,6 @@
 kind: Pod
   metadata:
-    labels:
-      some-label: some-label-value
+    name: cloudbees-core
   spec:
     containers:
       - name: kubectl
