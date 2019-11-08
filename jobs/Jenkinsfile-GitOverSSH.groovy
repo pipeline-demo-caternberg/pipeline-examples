@@ -1,27 +1,10 @@
 pipeline {
     agent {
         kubernetes {
-            label 'git_test'
-            defaultContainer 'git'
-            yaml """
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      labels:
-        some-label: some-label-value
-    spec:
-      containers:
-      - name: git
-        image: bravissimolabs/alpine-git
-        command:
-        - cat
-        tty: true
-             """
+            yamlFile 'yanl/podTemplate.yml'
         }
     }
-
     stages {
-
         stage('Build') {
             steps {
                 container('git') {
@@ -39,10 +22,7 @@ pipeline {
                         sh "git add README.md"
                         sh "git commit -m \"add line\""
                         sh 'git push origin master'
-
                     }
-
-
                 }
             }
         }

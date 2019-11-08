@@ -4,7 +4,11 @@ pipeline {
     master executors has to be increased from default `0` to ```to get this executed ton master
     agent { label 'master'}
     */
-    agent { label "cloudbees-core" }
+    agent {
+        kubernetes {
+            yamlFile 'yanl/podTemplate.yml'
+        }
+    }
     triggers {
         eventTrigger jmespathQuery("contains(event,'com.example:' && '-SNAPSHOT')")
     }

@@ -17,7 +17,11 @@ pipeline {
         }
 
         stage('Say Hello2') {
-            agent { label "cloudbees-core" }
+            agent {
+                kubernetes {
+                    yamlFile 'yanl/podTemplate.yml'
+                }
+            }
             steps {
             container("curl") {
                     echo "Input is not blocking the agent: Returnvalue is:${returnValue}"

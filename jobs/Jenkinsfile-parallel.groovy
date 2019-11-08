@@ -1,5 +1,9 @@
 pipeline {
-    agent none
+    agent {
+        kubernetes {
+            yamlFile 'yanl/podTemplate.yml'
+        }
+    }
     stages {
         stage('init-stage') {
             steps {
@@ -10,10 +14,14 @@ pipeline {
             steps {
                 parallel(
                         a: {
-                            echo "This is branch a"
+                            container("curl"){
+                                echo "This is branch a"
+                            }
                         },
                         b: {
-                            echo "This is branch b"
+                            container("curl"){
+                                echo "This is branch b"
+                            }
                         }
                 )
             }

@@ -18,9 +18,17 @@ node (){
         files.each {file -> println file}
         def parallelBranches = files.collectEntries { n ->
             [(n): {
-                node('cloudbees-core') {
+                agent {
+                    kubernetes {
+                        yamlFile 'yanl/podTemplate.yml'
+                    }
+                }
+
+                container("curl") {
                     sh "sleep 10"
                     echo "Done"
+                }
+
                 }
             }]
         }

@@ -2,7 +2,11 @@ pipeline {
     agent none
     stages {
         stage('Stage Stash') {
-            agent { label 'cloudbees-core'}
+            agent {
+                kubernetes {
+                    yamlFile 'yanl/podTemplate.yml'
+                }
+            }
             steps {
                 container('curl'){
                     // checkout scm
@@ -13,7 +17,11 @@ pipeline {
             }
         }
         stage('Stage Unstash') {
-            agent { label 'cloudbees-core'}
+            agent {
+                kubernetes {
+                    yamlFile 'yanl/podTemplate.yml'
+                }
+            }
             steps {
                 container('maven'){
                     unstash 'buildnumber'
