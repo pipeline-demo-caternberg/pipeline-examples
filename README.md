@@ -25,7 +25,8 @@ agent {
 see  http://github-api.kohsuke.org/
 
 
-#obs/Jenkinsfile-docker-build-kaniko.groovy
+# How to configure the kanoko docker build/push job:  jobs/Jenkinsfile-docker-build-kaniko.groovy
+
 ## A simple-docker-kaniko-pipeline-example
 A simple Dockerfile to build with kaniko
 
