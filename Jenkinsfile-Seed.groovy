@@ -1,5 +1,9 @@
 pipeline {
-    agent { node { label 'cloudbees-core' } }
+    agent {
+        kubernetes {
+            yamlFile 'jobs/yanl/podTemplate.yml'
+        }
+    }
     stages {
         stage('buildLib') {
             steps {

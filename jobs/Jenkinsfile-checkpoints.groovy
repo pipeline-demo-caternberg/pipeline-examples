@@ -3,6 +3,7 @@ pipeline {
         kubernetes {
             yamlFile 'yanl/podTemplate.yml'
         }
+    }
     stages {
         stage('Say Hello') {
             steps {
