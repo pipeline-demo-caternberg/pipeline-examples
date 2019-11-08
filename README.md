@@ -34,7 +34,7 @@ A simple Dockerfile to build with kaniko
 
 ### rename kubctl-create-secret.sh.default
 ```
-cp -f kubctl-create-secret.sh.default kubctl-create-secret.sh
+cp -f scripts/kubctl-create-secret.sh.default kubctl-create-secret.sh
 ```
 #### adjust your docker registry values
 NORTE: Special characters in password must escape!
