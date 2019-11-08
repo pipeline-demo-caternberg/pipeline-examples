@@ -25,17 +25,17 @@ agent {
 see  http://github-api.kohsuke.org/
 
 
-
-# A simple-docker-kaniko-pipeline-example
+#obs/Jenkinsfile-docker-build-kaniko.groovy
+## A simple-docker-kaniko-pipeline-example
 A simple Dockerfile to build with kaniko
 
-## Configure
+### Configure
 
 ### rename kubctl-create-secret.sh.default
 ```
 cp -f kubctl-create-secret.sh.default kubctl-create-secret.sh
 ```
-### adjust your docker registry values
+#### adjust your docker registry values
 NORTE: Special characters in password must escape!
 ```
 kubectl create secret docker-registry docker-credentials \
@@ -43,11 +43,11 @@ kubectl create secret docker-registry docker-credentials \
     --docker-password=<PASSWORD> \
     --docker-email=<EMAIL>
 ```
-### create the scercet
+#### create the scercet
 ```
 ./kubctl-create-secret.sh
 ```
-### docker push manually
+#### docker push manually
 ```
 docker login
 sudo docker build -t caternberg/hellonode:1.1 .
