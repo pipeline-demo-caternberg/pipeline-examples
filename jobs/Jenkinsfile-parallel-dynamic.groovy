@@ -28,8 +28,7 @@ node (){
                     sh "sleep 10"
                     echo "Done"
                 }
-
-                }
+                
             }]
         }
 
