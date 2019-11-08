@@ -4,7 +4,7 @@ pipeline {
         stage('hello World') {
             steps {
                 echo "Hello World"
-                sh 'ls -ltr /tmp'
+                sh 'ls -lR . && ls -ltr /tmp'
             }
         }
     }
