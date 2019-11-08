@@ -1,5 +1,5 @@
-podTemplate( label: 'mypod', yaml: 'yaml/podTemplate.yml')
-node ("mypod"){
+
+node (){
     stage ("prepare"){
         ["1", "2", "3"].each {
             println "Item: $it"
@@ -18,12 +18,11 @@ node ("mypod"){
         files.each {file -> println file}
         def parallelBranches = files.collectEntries { n ->
             [(n): {
-             node("mypod")
-             {
-                 sh "sleep 10"
-                 echo "Done"
-             }
-             }]
+                node('cloudbees-core') {
+                    sh "sleep 10"
+                    echo "Done"
+                }
+            }]
         }
 
         parallel parallelBranches
