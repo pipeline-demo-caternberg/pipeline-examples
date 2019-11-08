@@ -1,5 +1,4 @@
-apiVersion: v1
-  kind: Pod
+kind: Pod
   metadata:
     labels:
       some-label: some-label-value
@@ -12,6 +11,8 @@ apiVersion: v1
             - cat
           tty: true
           workingDir: "/home/jenkins/agent"
+          securityContext:
+            runAsUser: 1000
           volumeMounts:
             - name: maven-cache
               mountPath: /cache
@@ -22,6 +23,8 @@ apiVersion: v1
               - cat
             tty: true
             workingDir: "/home/jenkins/agent"
+            securityContext:
+              runAsUser: 1000
             volumeMounts:
               - name: maven-cache
                 mountPath: /cache
@@ -32,16 +35,19 @@ apiVersion: v1
               - cat
             tty: true
             workingDir: "/home/jenkins/agent"
+            securityContext:
+              runAsUser: 1000
             volumeMounts:
               - name: maven-cache
                 mountPath: /cache
       - name: helm
         image: lachlanevenson/k8s-helm:latest
-        runAsUser: 1000
         command:
           - cat
         tty: true
         workingDir: "/home/jenkins/agent"
+        securityContext:
+          runAsUser: 1000
       - name: curl
         image: appropriate/curl
         runAsUser: 1000
