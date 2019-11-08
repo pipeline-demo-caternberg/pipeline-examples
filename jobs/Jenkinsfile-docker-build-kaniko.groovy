@@ -28,6 +28,7 @@ spec:
     stage('Build with Kaniko') {
         container(name: 'kaniko', shell: '/busybox/sh') {
            git 'https://github.com/pipeline-demo-caternberg/simple-docker-example.git'
+            sh 'ls -lR'
            withEnv(['PATH+EXTRA=/busybox:/kaniko']) {
             sh '''#!/busybox/sh
                 /kaniko/executor  --dockerfile $(pwd)/dockerfiles/Dockerfile --insecure --skip-tls-verify --cache=false  --context $(pwd) --destination caternberg/hellokaniko:BUILD_NUMBER-${BUILD_NUMBER}
