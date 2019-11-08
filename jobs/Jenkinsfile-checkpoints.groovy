@@ -1,5 +1,8 @@
 pipeline {
-    agent { label 'cloudbees-core' }
+    agent {
+        kubernetes {
+            yamlFile 'yanl/podTemplate.yml'
+        }
     stages {
         stage('Say Hello') {
             steps {
