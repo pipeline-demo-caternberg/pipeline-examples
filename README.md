@@ -23,3 +23,44 @@ agent {
 
 
 see  http://github-api.kohsuke.org/
+
+
+
+# A simple-docker-kaniko-pipeline-example
+A simple Dockerfile to build with kaniko
+
+## Configure
+
+### rename kubctl-create-secret.sh.default
+```
+cp -f kubctl-create-secret.sh.default kubctl-create-secret.sh
+```
+### adjust your docker registry values
+NORTE: Special characters in password must escape!
+```
+kubectl create secret docker-registry docker-credentials \
+    --docker-username=><USER>  \
+    --docker-password=<PASSWORD> \
+    --docker-email=<EMAIL>
+```
+### create the scercet
+```
+./kubctl-create-secret.sh
+```
+### docker push manually
+```
+docker login
+sudo docker build -t caternberg/hellonode:1.1 .
+docker push caternberg/hellonode:1.1
+```
+see
+* https://go.cloudbees.com/docs/cloudbees-core/cloud-install-guide/kubernetes-using-kaniko/
+* https://support.cloudbees.com/hc/en-us/articles/360019236771-How-to-build-my-own-docker-images-in-CloudBees-Core-on-Modern-Cloud-Platforms
+* https://support.cloudbees.com/hc/en-us/articles/360031223512-What-you-need-to-know-when-using-Kaniko-from-Kubernetes-Jenkins-Agents
+* https://kubernetes.io/docs/concepts/configuration/secret/#decoding-a-secret
+* https://kubernetes.io/docs/concepts/configuration/secret/#overview-of-secrets
+* https://www.thenativeweb.io/blog/2018-08-14-11-32-kubernetes-building-docker-images-within-a-cluster/
+
+
+kubectl create secret docker-registry gcr-json-key   --docker-server=gcr.io   --docker-username=_json_key   --docker-password="$(cat ~/Downloads/ps-dev-ef65ab901406.json)"  --docker-email=acaternberg@cloudbees.com
+kubectl patch
