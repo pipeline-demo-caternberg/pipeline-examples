@@ -15,7 +15,7 @@ pipeline {
                     sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/'
                     withCredentials([string(credentialsId: 'githubaccesstoken', variable: 'GH_ACCESS_TOKEN')]) {
                         echo sh(script: 'env|sort', returnStdout: true)
-                        jobDsl targets: ['Seed.groovy'].join('\n'),
+                        jobDsl targets: ['resources/groovy/Seed.groovy'].join('\n'),
                                 removedJobAction: 'DELETE',
                                 removedViewAction: 'DELETE',
                                 lookupStrategy: 'SEED_JOB',
