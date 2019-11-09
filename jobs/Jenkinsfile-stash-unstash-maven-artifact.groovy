@@ -5,7 +5,7 @@ pipeline {
         stage('Stash') {
             agent {
                 kubernetes {
-                    yamlFile 'yaml/podTemplate.yml'
+                    yamlFile 'resources/yaml/podTemplate.yml'
                 }
             }
             steps {
@@ -22,7 +22,7 @@ pipeline {
         stage('Unstash') {
             agent {
                 kubernetes {
-                    yamlFile 'yaml/podTemplate.yml'
+                    yamlFile 'resources/yaml/podTemplate.yml'
                 }
             }
             steps {
