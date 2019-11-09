@@ -24,15 +24,14 @@ agent {
 
 see  http://github-api.kohsuke.org/
 
-##Pre-requirerments: Set up credentials
+## Pre-requirerments: Set up credentials
 
 Setup the following credentials:  (used by some pipelines)
 
-githubssh=GH User and SSHkey (secret text)
-githubaccesstoken=GH Access token
-
-as well as the dockerhub  rdentials for kaniko  docker build/push job:  jobs/Jenkinsfile-docker-build-kaniko.groovy
-(GCR is not implemeted yet, docker hub is used in the example pipeline) 
+* githubssh=GH User and SSHkey (secret text)
+* githubaccesstoken=GH Access token
+* as well as the dockerhub  credentials for the kaniko  docker build/push job: (see  jobs/Jenkinsfile-docker-build-kaniko.groovy)
+(GCR is not implemented yet, docker hub is used in the example pipeline)  See instructions below to set up 
 
 ## A simple-docker-kaniko-pipeline-example
 A simple Dockerfile to build with kaniko
