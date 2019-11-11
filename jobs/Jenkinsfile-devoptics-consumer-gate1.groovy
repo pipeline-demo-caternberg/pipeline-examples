@@ -21,8 +21,8 @@ pipeline {
         stage('meta-info') {
             steps {
                 container("curl") {
-                    withCredentials([string(credentialsId: 'jenkinsuserandtoken', variable: 'ADMINTOKEN')]) {
-                        curlEventCause "$ADMINTOKEN"
+                    withCredentials([usernamePassword(credentialsId: 'jenkinsuserandtoken', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                        curlEventCause "$USER:$PASS"
                     }
                 }
             }   //  sh "env"
