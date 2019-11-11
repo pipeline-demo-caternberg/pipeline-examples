@@ -2,6 +2,8 @@ import org.kohsuke.github.*
 import hudson.*
 import org.apache.commons.io.FilenameUtils;
 
+
+
 // println("createPipelineJobs with ghAccessToken: ${ghAccessToken}")
 // Redefine these variables for your installation
 String genFolder = 'pipeline-examples-gen'                                               // folder to put your jobs into
