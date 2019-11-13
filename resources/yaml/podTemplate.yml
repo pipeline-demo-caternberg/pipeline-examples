@@ -69,8 +69,8 @@ spec:
       command:
         - cat
       tty: true
-  securityContext:
-    runAsUser: 1000
+      securityContext:
+        runAsUser: 1000
     - name: kaniko
       image: gcr.io/kaniko-project/executor:debug
       imagePullPolicy: Always
