@@ -65,7 +65,7 @@ spec:
         - cat
       tty: true
     - name: testcafe
-      image: gcr.io/technologists/testcafe:0.0.2
+      image: testcafe/testcafe
       command:
         - cat
       tty: true
