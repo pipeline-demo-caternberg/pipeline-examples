@@ -22,7 +22,7 @@ pipeline {
             steps {
                 container("curl") {
                     withCredentials([string(credentialsId: 'jenkinstoken', variable: 'ADMINTOKEN')]) {
-                        curlEventCause $USER $PASS
+                        curlEventCause "admin:$ADMINTOKEN"
                     }
                 }
             }   //  sh "env"
