@@ -1,0 +1,70 @@
+{
+	"phases": [
+		{
+			"id": "TSlZ0sqDuh",
+			"name": "Build",
+			"gates": [
+				{
+					"id": "5eMvajavv",
+					"name": "API Dev",
+					"master": "https://cb-core.caternberg.eu/teams-team-one/",
+					"job": "team-one/devoptics/helloapp-api/development",
+					"feeds": "v-4fcgpTY",
+					"fanout": []
+				},
+				{
+					"id": "ZF5Ou-7vv",
+					"name": "UI Dev ",
+					"master": "https://cb-core.caternberg.eu/teams-team-one/",
+					"job": "team-one/devoptics/helloapp-nodejs/development",
+					"feeds": "release",
+					"fanout": []
+				}
+			]
+		},
+		{
+			"id": "QLggEt9hI",
+			"name": "Test",
+			"gates": [
+				{
+					"id": "v-4fcgpTY",
+					"name": "API Test",
+					"master": "https://cb-core.caternberg.eu/teams-team-one/",
+					"job": "team-one/devoptics/helloapp-api/test",
+					"feeds": "yiK5MUR5Q",
+					"fanout": []
+				}
+			]
+		},
+		{
+			"id": "ExwDnpexcA",
+			"name": "Deploy API",
+			"gates": [
+				{
+					"id": "yiK5MUR5Q",
+					"name": "API Master",
+					"master": "https://cb-core.caternberg.eu/teams-team-one/",
+					"job": "team-one/devoptics/helloapp-api/master",
+					"feeds": "release",
+					"fanout": [],
+					"type": "deployment"
+				}
+			]
+		},
+		{
+			"id": "8THbC9EXqX",
+			"name": "Deploy App",
+			"gates": [
+				{
+					"id": "release",
+					"name": "UI Master",
+					"master": "https://cb-core.caternberg.eu/teams-team-one/",
+					"job": "team-one/devoptics/helloapp-nodejs/master",
+					"fanout": [],
+					"type": "deployment",
+					"feeds": null
+				}
+			]
+		}
+	]
+}
