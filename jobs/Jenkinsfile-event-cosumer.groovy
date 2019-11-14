@@ -19,7 +19,7 @@ pipeline {
                 container("curl") {
                     withCredentials([string(credentialsId: 'jenkinstoken', variable: 'ADMINTOKEN')]) {
                         echo "TOKEN: $ADMINTOKEN"
-                        curlEventCause "$ADMINTOKEN"
+                        curlEventCause "admin" "$ADMINTOKEN"
                     }
                 }
             }
