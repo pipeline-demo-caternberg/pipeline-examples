@@ -31,7 +31,7 @@ spec:
            git 'https://github.com/pipeline-demo-caternberg/pipeline-examples.git'
            withEnv(['PATH+EXTRA=/busybox:/kaniko']) {
             sh '''#!/busybox/sh
-                /kaniko/executor  --dockerfile $(pwd)/resources/dockerfiles/Dockerfile --insecure --skip-tls-verify --cache=false  --context $(pwd) --destination caternberg/hellokaniko:BUILD_NUMBER-${BUILD_NUMBER}
+                /kaniko/executor  --dockerfile $(pwd)/resources/dockerfiles/Dockerfile-kaniko-example --insecure --skip-tls-verify --cache=false  --context $(pwd) --destination caternberg/hellokaniko:BUILD_NUMBER-${BUILD_NUMBER}
             '''
            }
         }
