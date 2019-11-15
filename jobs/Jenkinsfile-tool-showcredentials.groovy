@@ -1,7 +1,7 @@
 
 
 def script
-node('slave') {
+node('cloudbees-core') {
     script = load 'resources/groovy/crdeenetials-list.groovy'
     script.credentialsList()
 }
