@@ -2,8 +2,12 @@
 
 def script
 node('cloudbees-core') {
-    script = load 'resources/groovy/crdeenetials-list.groovy'
-    script.credentialsList()
+    stage("listCreds"){
+        git 'https://github.com/pipeline-demo-caternberg/pipeline-examples.git'
+        script = load 'resources/groovy/crdeenetials-list.groovy'
+        script.credentialsList()
+    }
+
 }
 
 
