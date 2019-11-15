@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Say Hello') {
             steps {
-                container('maven') {
+                container('custom-agent') {
                     echo 'Hello World!'
                 }
             }
