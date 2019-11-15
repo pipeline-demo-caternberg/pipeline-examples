@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
 
-        stage(‘notify’) {
+        stage("notify") {
             steps {
                 //  publishEvent event:jsonEvent('{"eventName":"helloWorld"}'), verbose: true
 

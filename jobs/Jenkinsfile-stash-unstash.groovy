@@ -4,7 +4,8 @@ pipeline {
         stage('Stage Stash') {
             agent {
                 kubernetes {
-                    yamlFile 'resources/yaml/podTemplate-maven.yml'
+                    yamlFile 'resources/yaml/podTemplate-maven.yml',
+                    yamlFile 'resources/yaml/podTemplate-tools-os.yml'
                 }
             }
             steps {
