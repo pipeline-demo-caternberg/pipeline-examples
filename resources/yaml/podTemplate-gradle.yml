@@ -15,7 +15,7 @@ spec:
       volumeMounts:
         - name: gradle-cache
           mountPath: /gradle-cache
-    volumes:
+   volumes:
     - name: geradle-cache
       persistentVolumeClaim:
         claimName: gradle-repo
