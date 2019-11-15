@@ -14,7 +14,7 @@ spec:
         runAsUser: 1000
       volumeMounts:
         - name: gradle-cache
-          mountPath: /gradle-cache
+          mountPath: /home/jenkins/agent/.groovy/grapes/
   volumes:
     - name: gradle-cache
       persistentVolumeClaim:
