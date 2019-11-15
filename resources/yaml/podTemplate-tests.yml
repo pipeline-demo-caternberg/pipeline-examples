@@ -3,7 +3,7 @@ metadata:
   name: cloudbees-core
 spec:
   containers:
-     - name: testcafe
+    - name: testcafe
       image: testcafe/testcafe
       command:
         - cat
