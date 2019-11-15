@@ -15,7 +15,7 @@ spec:
       volumeMounts:
         - name: maven-cache
           mountPath: /cache
-    volumes:
+  volumes:
     - name: maven-cache
       persistentVolumeClaim:
         claimName: maven-repo
