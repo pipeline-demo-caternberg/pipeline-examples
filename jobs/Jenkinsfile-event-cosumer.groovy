@@ -6,7 +6,7 @@ pipeline {
     */
     agent {
         kubernetes {
-            yamlFile 'resources/yaml/podTemplate.yml'
+            yamlFile 'resources/yaml/podTemplate-maven.yml'
         }
     }
     triggers {

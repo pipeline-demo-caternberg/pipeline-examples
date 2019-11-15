@@ -1,0 +1,12 @@
+kind: Pod
+metadata:
+  name: cloudbees-core
+spec:
+  containers:
+     - name: testcafe
+      image: testcafe/testcafe
+      command:
+        - cat
+      tty: true
+      securityContext:
+        runAsUser: 1000

@@ -1,0 +1,20 @@
+kind: Pod
+metadata:
+  name: cloudbees-core
+spec:
+  containers:
+    - name: git
+      image: bravissimolabs/alpine-git
+      command:
+        - cat
+      tty: true
+      workingDir: "/home/jenkins/agent"
+      securityContext:
+        runAsUser: 0
+    - name: curl
+      image: appropriate/curl
+      runAsUser: 1000
+      command:
+        - cat
+      tty: true
+      workingDir: "/home/jenkins/agent"

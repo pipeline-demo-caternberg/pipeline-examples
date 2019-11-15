@@ -1,0 +1,38 @@
+kind: Pod
+metadata:
+  name: cloudbees-core
+spec:
+  containers:
+     - name: nodejs
+      image: node:10.10.0-alpine
+      command:
+        - cat
+      tty: true
+    - name: testcafe
+      image: testcafe/testcafe
+      command:
+        - cat
+      tty: true
+      securityContext:
+        runAsUser: 1000
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:debug
+      imagePullPolicy: Always
+      command:
+        - /busybox/cat
+      tty: true
+      volumeMounts:
+        - name: jenkins-docker-cfg
+          mountPath: /kaniko/.docker
+  volumes:
+    - name: jenkins-docker-cfg
+      projected:
+        sources:
+          - secret:
+              name: docker-credentials
+              items:
+                - key: .dockerconfigjson
+                  path: config.json
+    - name: maven-cache
+      persistentVolumeClaim:
+        claimName: maven-repo
