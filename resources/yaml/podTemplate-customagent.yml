@@ -4,7 +4,7 @@ metadata:
 spec:
   containers:
     - name: custom-agent
-      image: caternberg/jenkins-agent-customized:latest
+      image: caternberg/jenkins-agent-customized
       runAsUser: 1000
       command:
         - cat
