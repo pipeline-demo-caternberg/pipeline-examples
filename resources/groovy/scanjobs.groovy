@@ -1,22 +1,18 @@
 
 def scan() {
-Jenkins.instance.getAllItems(AbstractItem.class).sort().each {it ->
-    println  it.fullName + " " + it.class.name ;
-    try {
-        if ( null != it.lastBuild && null != it.lastBuild.timestamp )
-        {
-            println it.lastBuild.timestamp
+    Jenkins.instance.getAllItems(AbstractItem.class).sort().each {it ->
+
+        try {
+            println it.lastBuild.timestamp.get(Calendar.YEAR)+"-"+(it.lastBuild.timestamp.get(Calendar.MONTH)+1)+"-"+it.lastBuild.timestamp.get(Calendar.DATE) + " " + it.fullName + " " + it.class.name;
+
+            //Iknow, this is very ugly to catch NPE . , sry
+        }catch (Exception e){
+            println "Error catched: " +  e.message
         }
-        if ( null !=  it.class && ! it.class.name.equals("org.jenkinsci.plugins.workflow.job.WorkflowJob") )
-        {
-            println it.lastBuiltOn.timestamp
-        }
-        //Iknow, this is very ugly to catch NPE . , sry
-    }catch (Exception e){
-        println "Error catched: " +  e.message
+
     }
 
-}
+
 
 
 }
