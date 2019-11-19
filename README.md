@@ -60,7 +60,15 @@ docker login
 sudo docker build -t caternberg/hellonode:1.1 .
 docker push caternberg/hellonode:1.1
 ```
-see
+
+
+
+# Debugging pods
+
+see https://github.com/jenkinsci/kubernetes-plugin#debugging 
+
+# Links 
+see  
 * https://go.cloudbees.com/docs/cloudbees-core/cloud-install-guide/kubernetes-using-kaniko/
 * https://support.cloudbees.com/hc/en-us/articles/360019236771-How-to-build-my-own-docker-images-in-CloudBees-Core-on-Modern-Cloud-Platforms
 * https://support.cloudbees.com/hc/en-us/articles/360031223512-What-you-need-to-know-when-using-Kaniko-from-Kubernetes-Jenkins-Agents
