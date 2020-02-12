@@ -10,7 +10,7 @@ pipeline {
             }
             steps {
                 container('maven') {
-                    git credentialsId: 'githubuserssh', url: 'git@github.com:pipeline-demo-caternberg/maven-project.git'
+                    git credentialsId: 'githubuserssh', url: 'git@github.com:cccaternberg/maven-project.git'
                     sh 'mvn clean package'
                     stash includes: '**/target/*.war', name: 'myapp'
                     //sh 'ls -l'
