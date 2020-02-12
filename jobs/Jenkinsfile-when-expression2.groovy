@@ -6,15 +6,21 @@ pipeline {
                 script {
                     DEPLOYMENT_ALLOWED = sh(script: """
                         echo true
-          """, returnStdout: true)
+          """, returnStdout: true).trim()
                 }
                 sh "echo ${DEPLOYMENT_ALLOWED}"
             }
         }
+
         stage ("next") {
-            when { expression { return DEPLOYMENT_ALLOWED } }
+          /*  environment  {
+                DEPLOYMENT_ALLOWED = "${DEPLOYMENT_ALLOWED}"
+            }
+            */
+            when { expression { return Boolean.valueOf("${DEPLOYMENT_ALLOWED}") } }
             steps {
-                sh  "echo Hello, bitwiseman! DEPLOYMENT_ALLOWED}"
+             //   echo sh(script: 'env|sort', returnStdout: true)
+                sh  "echo Hello, bitwiseman! ${DEPLOYMENT_ALLOWED}"
             }
         }
     }
