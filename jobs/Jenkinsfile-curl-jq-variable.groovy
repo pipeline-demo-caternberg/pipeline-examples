@@ -1,7 +1,3 @@
-
-
-
-
 pipeline {
     agent { node { label 'master' } }
     stages {
@@ -10,7 +6,6 @@ pipeline {
                 script {
                     DEPLOYMENT_ALLOWED = sh(script: """
 echo '{"result":{"deploymentAllowed":"false","caseType":"not found"}}' | jq .result.deploymentAllowed
-"false"
           """, returnStdout: true)
                 }
                 environment  {
