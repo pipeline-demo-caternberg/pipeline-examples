@@ -44,7 +44,7 @@ def checkBox (String name, String values, String defaultValue, String propertyFi
 def testParam = checkBox("images", // name
         "", // values
         "", //default value
-        "/var/cloudbees-jenkins-distribution/params.properties",//Absolute Path to propertyFile
+        "resources/properties/extended_choice_params.properties",//Absolute Path or Network URL to propertyFile, http://..../property.properties
         "images",//propertyKey
         10, //visible item cnt
         "Multi-select", // description
