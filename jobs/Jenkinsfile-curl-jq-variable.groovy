@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                     DEPLOYMENT_ALLOWED = sh(script: """
-echo '{"result":{"deploymentAllowed":"false","caseType":"not found"}}' | jq .result.deploymentAllowed
+echo '{"result":{"deploymentAllowed":"false","caseType":"not found"}}' | jq -r .result.deploymentAllowed
           """, returnStdout: true)
                 }
                 environment  {
