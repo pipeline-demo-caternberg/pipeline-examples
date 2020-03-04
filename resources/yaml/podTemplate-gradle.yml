@@ -11,4 +11,8 @@ spec:
       tty: true
       workingDir: "/home/jenkins/agent"
       securityContext:
+<<<<<<< HEAD
         runAsUser: 1000
+=======
+        runAsUser: 1000
+>>>>>>> 545013de3058c96547e2c4caa736058750d923c9
