@@ -13,14 +13,11 @@ pipeline {
                     }
                     sh 'gradle clean lib'
                     sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/'
-                      input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "admin"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
-            }
+                    script {
+                    //If agent other than "any" the ìput`should take place outside a agent definition!!!
+                    returnValue = input message: 'Need some input'
+                     }
+                echo "${returnValue}"
                     withCredentials([string(credentialsId: 'githubaccesstoken', variable: 'GH_ACCESS_TOKEN')]) {
                         echo sh(script: 'env|sort', returnStdout: true)
                         jobDsl targets: ['resources/groovy/Seed.groovy'].join('\n'),
