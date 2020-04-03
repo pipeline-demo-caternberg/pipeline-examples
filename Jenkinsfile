@@ -13,7 +13,7 @@ pipeline {
                     }
                     sh 'gradle clean lib'
                     sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/'
-                    withCredentials([string(credentialsId: 'githubuseraccesstoken', variable: 'GH_ACCESS_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'githubuserpw', variable: 'GH_ACCESS_TOKEN')]) {
                         echo sh(script: 'env|sort', returnStdout: true)
                         jobDsl targets: ['resources/groovy/Seed.groovy'].join('\n'),
                                 removedJobAction: 'DELETE',
