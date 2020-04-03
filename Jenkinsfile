@@ -13,7 +13,7 @@ pipeline {
                     }
                     sh 'gradle clean lib'
                     sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/ && chmod -R 755  lib/ && chmod -R 755 ~/.groovy/grapes/'
-                    sh "WS $(pwd)"
+                    sh "ls -la"
                     script {
                     //If agent other than "any" the ìput`should take place outside a agent definition!!!
                     returnValue = input message: 'Need some input'
