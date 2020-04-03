@@ -1,3 +1,8 @@
+// https://mvnrepository.com/artifact/org.kohsuke/github-api
+@Grapes(
+    @Grab(group='org.kohsuke', module='github-api', version='1.108')
+)
+
 import org.kohsuke.github.*
 import hudson.*
 import org.apache.commons.io.FilenameUtils;
