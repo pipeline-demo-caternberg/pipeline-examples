@@ -13,7 +13,7 @@ pipeline {
                     }
                     sh 'gradle clean lib'
                     sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/ && chmod -R 755  lib/ && chmod -R 755 ~/.groovy/grapes/'
-                    sh "echo $CLASSPATH"
+                    sh "WS $(pwd)"
                     script {
                     //If agent other than "any" the ìput`should take place outside a agent definition!!!
                     returnValue = input message: 'Need some input'
@@ -25,7 +25,7 @@ pipeline {
                                 removedJobAction: 'DELETE',
                                 removedViewAction: 'DELETE',
                                 lookupStrategy: 'SEED_JOB',
-                                additionalClasspath: ['.groovy/grapes/**/*.jar'].join('\n'),
+                                additionalClasspath: ['**/lib//*.jar'].join('\n'),
                                 additionalParameters: [credentials: "${GH_ACCESS_TOKEN}"]
                     }
                     // point to exact source file
