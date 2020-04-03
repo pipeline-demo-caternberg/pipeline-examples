@@ -12,7 +12,7 @@ pipeline {
                         println System.getProperty("java.ext.dirs")
                     }
                     sh 'gradle clean lib'
-                    sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/ && chmod -R 755  lib/ && chod -R 755 ~/.groovy/grapes/'
+                    sh 'mkdir -p  ~/.groovy/grapes/  &&  cp -f lib/*.jar  ~/.groovy/grapes/ && chmod -R 755  lib/ && chmod -R 755 ~/.groovy/grapes/'
                     sh "echo $CLASSPATH"
                     script {
                     //If agent other than "any" the ìput`should take place outside a agent definition!!!
