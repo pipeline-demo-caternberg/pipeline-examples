@@ -25,7 +25,7 @@ pipeline {
                                 removedJobAction: 'DELETE',
                                 removedViewAction: 'DELETE',
                                 lookupStrategy: 'SEED_JOB',
-                                additionalClasspath: ['**/lib//*.jar'].join('\n'),
+                                additionalClasspath: ['./lib'].join('\n'),
                                 additionalParameters: [credentials: "${GH_ACCESS_TOKEN}"]
                     }
                     // point to exact source file
