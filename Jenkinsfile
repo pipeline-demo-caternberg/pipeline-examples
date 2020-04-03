@@ -25,7 +25,7 @@ pipeline {
                                 removedJobAction: 'DELETE',
                                 removedViewAction: 'DELETE',
                                 lookupStrategy: 'SEED_JOB',
-                                additionalClasspath: ['/home/gradle/.groovy/grapes/**/*.jar'].join('\n'),
+                                additionalClasspath: ['.groovy/grapes/**/*.jar'].join('\n'),
                                 additionalParameters: [credentials: "${GH_ACCESS_TOKEN}"]
                     }
                     // point to exact source file
