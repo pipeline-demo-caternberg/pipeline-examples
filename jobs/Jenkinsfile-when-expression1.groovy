@@ -1,7 +1,8 @@
+def DEPLOYMENT_ALLOWED=true
 pipeline {
-    agent { node { label 'master' } }
+    agent any
     stages {
-        stage('hello World') {
+      /*  stage('hello World') {
             steps {
                 script {
                     DEPLOYMENT_ALLOWED = sh(script: """
@@ -10,6 +11,7 @@ pipeline {
                 }
                 sh "echo ${DEPLOYMENT_ALLOWED}"
             }
+        */
         }
 
         stage ("next") {
