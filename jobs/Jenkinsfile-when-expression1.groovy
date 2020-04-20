@@ -11,8 +11,8 @@ pipeline {
                 }
                 sh "echo ${DEPLOYMENT_ALLOWED}"
             }
-        */
         }
+        */
 
         stage ("next") {
             when { expression { return Boolean.valueOf("${DEPLOYMENT_ALLOWED}") } }
