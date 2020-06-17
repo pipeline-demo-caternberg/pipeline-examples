@@ -4,6 +4,8 @@
 podTemplate(yaml: '''
 apiVersion: v1
 kind: Pod
+metadata:
+  name: test-dind
 spec:
   containers:
   - name: dind
@@ -12,6 +14,14 @@ spec:
     - sleep
     args:
     - infinity
+    volumeMounts:
+    - mountPath: /var/run/docker.sock
+      name: myvolume
+  volumes:
+  - name: myvolume
+    hostPath:
+      path: /var/run/docker.sock
+      type: FileOrCreate    
 ''') {
     node(POD_LABEL) {
         container('dind') {
