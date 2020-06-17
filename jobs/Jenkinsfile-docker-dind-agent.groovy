@@ -16,7 +16,7 @@ spec:
     node(POD_LABEL) {
         container('dind') {
           sh "ls -l"
-            sh 'docker build -t caternberg/dindtest -f resources/dockerfiles/Dockerfile-simple .'
+            sh 'docker build -t caternberg/dindtest -f $(pwd)/resources/dockerfiles/Dockerfile-custom-jnlp-agent  .'
         }      
     }
 }
