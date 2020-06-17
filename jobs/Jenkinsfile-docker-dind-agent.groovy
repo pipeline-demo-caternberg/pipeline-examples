@@ -15,7 +15,7 @@ spec:
 ''') {
     node(POD_LABEL) {
         container('dind') {
-            sh 'docker build -t caternberg/dindtest .'
+            sh 'docker build -t caternberg/dindtest -f resources/dockerfiles/Dockerfile-simple .'
         }      
     }
 }
