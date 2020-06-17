@@ -15,7 +15,7 @@ spec:
 ''') {
     node(POD_LABEL) {
         container('dind') {
-          git
+          git https://github.com/pipeline-demo-caternberg/pipeline-examples.git
           sh "ls -l ../"
             sh 'docker build -t caternberg/dindtest -f $(pwd)/resources/dockerfiles/Dockerfile-custom-jnlp-agent  .'
         }      
