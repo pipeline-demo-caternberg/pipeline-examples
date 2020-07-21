@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage("build and test the project") {
             agent {
-                docker "our-build-tools-image"
+                  kubernetes {
+                    yamlFile 'resources/yaml/podTemplate-maven.yml'
+                 }
             }
             stages {
                stage("build") {
@@ -30,7 +32,9 @@ pipeline {
                 message "Should we deploy the project?"
             }
             agent {
-                docker "our-deploy-tools-image"
+                  kubernetes {
+                    yamlFile 'resources/yaml/podTemplate-maven.yml'
+                 }
             }
             steps {
                 sh "echo deploy"
