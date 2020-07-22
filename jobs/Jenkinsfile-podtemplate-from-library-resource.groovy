@@ -1,4 +1,4 @@
-library '_git@github.com:pipeline-demo-caternberg/pipeline-library.git_'
+library '_git@github.com:pipeline-demo-caternberg/pipeline-library' _
 def testPodYaml = libraryResource 'podtemplates/nodejs-app/web-test-pod.yml'
 pipeline {
      agent {
