@@ -1,10 +1,10 @@
-library '_git@github.com:pipeline-demo-caternberg/pipeline-library' _
+library '_github_com_pipeline-demo-caternberg_pipeline-library' _
 def testPodYaml = libraryResource 'podtemplates/nodejs-app/web-test-pod.yml'
 pipeline {
      agent {
         kubernetes {
           label 'nodejs-testcafe'
-          yaml web-test-pod.yml
+          yaml testPodYaml
         }
       }
     stages {
