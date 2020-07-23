@@ -14,11 +14,11 @@ pipeline {
                        sh "echo build"
                    }
                }
-               stage("test") {
-                   steps {
+            stage("test") {
+                  steps {
                        sh "echo test"
-                   }
-               }
+                  }
+              }
             }
             post {
                 success {
