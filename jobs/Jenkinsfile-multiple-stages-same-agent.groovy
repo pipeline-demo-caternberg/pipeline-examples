@@ -4,21 +4,21 @@ pipeline {
     stages {
         stage("build and test the project") {
             agent {
-                  kubernetes {
+                kubernetes {
                     yamlFile 'resources/yaml/podTemplate-maven.yml'
-                 }
+                }
             }
             stages {
-               stage("build") {
-                   steps {
-                       sh "echo build"
-                   }
-               }
-            stage("test") {
-                  steps {
-                       sh "echo test"
-                  }
-              }
+                stage("build") {
+                    steps {
+                        sh "echo build"
+                    }
+                }
+                stage("test") {
+                    steps {
+                        sh "echo test"
+                    }
+                }
             }
             post {
                 success {
@@ -32,9 +32,9 @@ pipeline {
                 message "Should we deploy the project?"
             }
             agent {
-                  kubernetes {
+                kubernetes {
                     yamlFile 'resources/yaml/podTemplate-maven.yml'
-                 }
+                }
             }
             steps {
                 sh "echo deploy"

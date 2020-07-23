@@ -18,7 +18,7 @@ pipeline {
         stage('Build') { // for display purposes
             steps {
                 // Run the maven build
-                container ("maven"){
+                container("maven") {
                     sh "mvn -Dmaven.test.failure.ignore clean package"
                 }
             }
@@ -33,7 +33,7 @@ pipeline {
         stage('Produce') { // for display purposes
             steps {
                 // Notify DevOptics that this run produced plugin-a.txt.
-             //   gateProducesArtifact file: 'target/*.jar'
+                //   gateProducesArtifact file: 'target/*.jar'
                 gateProducesArtifact file: 'pom.xml'
                 publishEvent event: jsonEvent('{"event":"com.example:supply-chain-webapp:1.2-SNAPSHOT:war","mavenArtifact":{"groupId":"com.example", "artifactId":"cloudbees-jar", "version":"0.5-SNAPSHOT"}} '), verbose: true
 

@@ -14,12 +14,12 @@ pipeline {
             steps {
                 parallel(
                         a: {
-                            container("curl"){
+                            container("curl") {
                                 echo "This is branch a"
                             }
                         },
                         b: {
-                            container("curl"){
+                            container("curl") {
                                 echo "This is branch b"
                             }
                         }

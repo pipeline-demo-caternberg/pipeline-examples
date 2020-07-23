@@ -1,8 +1,9 @@
 import com.cwctravel.hudson.plugins.extended_choice_parameter.ExtendedChoiceParameterDefinition
+
 //see https://support.cloudbees.com/hc/en-us/articles/115003891391-Pipeline-Snippet-Generator-return-the-name-of-the-object-instead-of-the-object-with-the-parameters
 //see https://support.cloudbees.com/hc/en-us/articles/115003895271-How-to-do-a-multiselect-input-in-a-pipeline
-def checkBox (String name, String values, String defaultValue, String propertyFile, String propertyKey,
-              int visibleItemCnt=0, String description='', String delimiter=',') {
+def checkBox(String name, String values, String defaultValue, String propertyFile, String propertyKey,
+             int visibleItemCnt = 0, String description = '', String delimiter = ',') {
 
     // default same as number of values
     visibleItemCnt = visibleItemCnt ?: values.split(',').size()
@@ -58,9 +59,9 @@ node {
 }
 pipeline {
     agent any
-    stages{
-        stage ("params"){
-            steps{
+    stages {
+        stage("params") {
+            steps {
                 echo "${params.images}"
             }
 

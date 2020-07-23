@@ -5,10 +5,10 @@ pipeline {
             steps {
                 script {
                     //If agent other than "any" the ìput`should take place outside a agent definition!!!
-                    returnValue = input message: 'Need some input' ,
-                    parameters:  [string(defaultValue: '',
-                            description: '',
-                            name: 'Give me a value')]
+                    returnValue = input message: 'Need some input',
+                            parameters: [string(defaultValue: '',
+                                    description: '',
+                                    name: 'Give me a value')]
                 }
                 echo "${returnValue}"
             }
@@ -21,10 +21,10 @@ pipeline {
                 }
             }
             steps {
-            container("curl") {
+                container("curl") {
                     echo "Input is not blocking the agent: Returnvalue is:${returnValue}"
+                }
             }
-           }
         }
     }
 }

@@ -43,7 +43,7 @@ pipeline {
             steps {
                 container('maven-one') {
                     //UNCOMENT TO ERASE ALL LOCAL ARTIFACTS FROM LOCAL CACHE
-                   // sh "rm -Rf -v /cache/org"
+                    // sh "rm -Rf -v /cache/org"
                     sh "ls -la /cache"
                 }
             }

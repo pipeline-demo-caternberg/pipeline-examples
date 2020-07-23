@@ -17,7 +17,7 @@ pipeline {
         stage('Example') {
             steps {
                 container("curl") {
-                   echo "called"
+                    echo "called"
                 }
             }
         }

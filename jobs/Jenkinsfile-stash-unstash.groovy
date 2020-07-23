@@ -8,7 +8,7 @@ pipeline {
                 }
             }
             steps {
-                container('curl'){
+                container('curl') {
                     // checkout scm
                     // sh 'make'
                     sh 'echo Some value from Stage1: $BUILD_NUMBER > buildnumber.txt'
@@ -23,7 +23,7 @@ pipeline {
                 }
             }
             steps {
-                container('maven'){
+                container('maven') {
                     unstash 'buildnumber'
                     sh 'ls -l'
                     sh 'cat buildnumber.txt'

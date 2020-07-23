@@ -13,7 +13,7 @@ pipeline {
         eventTrigger jmespathQuery("contains(event,'com.example:' && '-SNAPSHOT')")
     }
     stages {
-        stage ("ConsumeArtifact"){
+        stage("ConsumeArtifact") {
             steps {
                 gateConsumesArtifact id: "pom.xml", type: 'xml'
             }

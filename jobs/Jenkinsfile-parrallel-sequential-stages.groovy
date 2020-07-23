@@ -5,10 +5,10 @@ pipeline {
         stage("build and deploy on Windows and Linux") {
             parallel {
                 stage("threadA") {
-                     agent {
-                          kubernetes {
+                    agent {
+                        kubernetes {
                             yamlFile 'resources/yaml/podTemplate-maven.yml'
-                         }
+                        }
                     }
                     stages {
                         stage("build") {
@@ -28,10 +28,10 @@ pipeline {
                 }
 
                 stage("threadB") {
-                     agent {
-                          kubernetes {
+                    agent {
+                        kubernetes {
                             yamlFile 'resources/yaml/podTemplate-maven.yml'
-                         }
+                        }
                     }
                     stages {
                         stage("build") {
@@ -40,11 +40,11 @@ pipeline {
                             }
                         }
                         stage("deploy") {
-                             when {
-                                 branch "master"
-                             }
-                             steps {
-                                  sh "echo deploy threadB"
+                            when {
+                                branch "master"
+                            }
+                            steps {
+                                sh "echo deploy threadB"
                             }
                         }
                     }
