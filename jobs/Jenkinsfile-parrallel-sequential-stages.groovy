@@ -17,9 +17,6 @@ pipeline {
                             }
                         }
                         stage("deploy") {
-                            when {
-                                branch "master"
-                            }
                             steps {
                                 sh "echo deploy threadA"
                             }
@@ -40,9 +37,6 @@ pipeline {
                             }
                         }
                         stage("deploy") {
-                            when {
-                                branch "master"
-                            }
                             steps {
                                 sh "echo deploy threadB"
                             }
