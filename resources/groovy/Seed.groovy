@@ -82,7 +82,7 @@ for (ghContent in ghContentList) {
                         }
                     }
                     scriptPath("jobs/" + ghContent.getName())
-                    lightweight(true)
+                    lightweight(false)
                 }
             }
         }
