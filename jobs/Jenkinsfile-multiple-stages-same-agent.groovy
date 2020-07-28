@@ -5,7 +5,7 @@ pipeline {
         stage("build and test the project") {
             agent {
                 kubernetes {
-                    yamlFile 'resources/yaml/podTemplate-maven.yml'
+                    yamlFile 'resources/yaml/maven.yml'
                 }
             }
             stages {
@@ -33,7 +33,7 @@ pipeline {
             }
             agent {
                 kubernetes {
-                    yamlFile 'resources/yaml/podTemplate-maven.yml'
+                    yamlFile 'resources/yaml/maven.yml'
                 }
             }
             steps {

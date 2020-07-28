@@ -7,7 +7,7 @@ pipeline {
                 stage("threadA") {
                     agent {
                         kubernetes {
-                            yamlFile 'resources/yaml/podTemplate-maven.yml'
+                            yamlFile 'resources/yaml/maven.yml'
                         }
                     }
                     stages {
@@ -27,7 +27,7 @@ pipeline {
                 stage("threadB") {
                     agent {
                         kubernetes {
-                            yamlFile 'resources/yaml/podTemplate-maven.yml'
+                            yamlFile 'resources/yaml/maven.yml'
                         }
                     }
                     stages {
