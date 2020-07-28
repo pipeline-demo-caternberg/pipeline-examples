@@ -51,7 +51,7 @@ folder("${genFolder}") {
 GHRepository ghRepository = ghOrganization.getRepository("pipeline-examples")
 List<GHContent> ghContentList = ghRepository.getDirectoryContent("jobs")
 for (ghContent in ghContentList) {
-    if (ghContent.isFile() && ghContent.getName().startsWith("Jenkinsfile.origin")) {
+    if (ghContent.isFile() && ghContent.getName().startsWith("Jenkinsfile")) {
         String fileNameWithOutExt = FilenameUtils.removeExtension(ghContent.name)
         println("generate ${fileNameWithOutExt}")
         pipelineJob("${genFolder}/${fileNameWithOutExt}") {
