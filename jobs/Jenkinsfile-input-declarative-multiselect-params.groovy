@@ -36,17 +36,14 @@ def multiSelect = new ExtendedChoiceParameterDefinition("name",
 def userInput = input id: 'customID', message: 'Let\'s promote?', ok: 'Release!', parameters: [multiSelect]
 
 
-echo "Hello: " + userInput
+
 pipeline {
     agent any
     stages {
         stage("input") {
             steps {
-
-
+                echo "USERINPUT:  ${userInput}"
             }
-
         }
-
     }
 }
