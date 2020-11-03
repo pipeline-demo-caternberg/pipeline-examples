@@ -1,16 +1,16 @@
 library '_github_com_pipeline-templates-apps_pipeline-library' _
-def testPodYaml = libraryResource 'podtemplates/nodejs-app/web-test-pod.yml'
+def maven = libraryResource '/resources/podtemplates/podTemplate-maven.yaml'
 pipeline {
     agent {
         kubernetes {
-            label 'nodejs-testcafe'
-            yaml testPodYaml
+            label 'mymavenlabel'
+            yaml maven
         }
     }
     stages {
         stage('Say Hello') {
             steps {
-                container('nodejs-testcafe') {
+                container('maven') {
                     echo 'Hello World!'
                 }
             }
