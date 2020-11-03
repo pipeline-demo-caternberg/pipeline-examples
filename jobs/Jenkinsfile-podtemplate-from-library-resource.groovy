@@ -1,5 +1,5 @@
 library '_github_com_pipeline-templates-apps_pipeline-library' _
-def maven = libraryResource '/resources/podtemplates/podTemplate-maven.yaml'
+def maven = libraryResource 'resources/podtemplates/podTemplate-maven.yaml'
 pipeline {
     agent {
         kubernetes {
