@@ -35,8 +35,6 @@ def multiSelect = new ExtendedChoiceParameterDefinition("name",
 
 def userInput = input id: 'customID', message: 'Let\'s promote?', ok: 'Release!', parameters: [multiSelect]
 
-
-
 pipeline {
     agent any
     stages {
