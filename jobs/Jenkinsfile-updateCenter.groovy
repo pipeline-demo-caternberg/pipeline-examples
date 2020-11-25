@@ -20,7 +20,7 @@ pipeline {
                 sh "ls -l"
                 sh "diff update-center-original.json update-center.json"
                 echo "##############################"
-                sh "cat update-center.json"
+                sh "cat update-center.json | jq"
                 archiveArtifacts 'update-center.json'
             }
         }
