@@ -33,6 +33,9 @@ spec:
                     sh '''#!/busybox/sh
                 /kaniko/executor  --dockerfile $(pwd)/resources/dockerfiles/Dockerfile-custom-jnlp-agent --insecure --skip-tls-verify --cache=false  --context $(pwd) --destination caternberg/jenkins-agent-customized:BUILD_NUMBER-${BUILD_NUMBER}
             '''
+                    sh '''#!/busybox/sh
+                /kaniko/executor  --dockerfile $(pwd)/resources/dockerfiles/Dockerfile-custom-jnlp-agent --insecure --skip-tls-verify --cache=true  --context $(pwd) --destination caternberg/jenkins-agent-customized:latest
+            '''
                 }
             }
         }
