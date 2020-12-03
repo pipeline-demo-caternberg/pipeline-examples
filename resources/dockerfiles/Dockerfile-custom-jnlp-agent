@@ -2,20 +2,36 @@ FROM jenkins/jnlp-slave:alpine
 WORKDIR /usr/local/bin
 LABEL maintainerAndreas Caternberg <andreas.caternberg@gmail.com>
 
-ENV DOCKER_VERSION=18.06.1-ce KUBECTL_VERSION=v1.20 HELM_VERSION=v3.0
+ENV DOCKER_VERSION=18.06.1-ce KUBECTL_VERSION=v1.20 HELM_VERSION=v3.0 JQ_VERSION=1.6
 
 USER root
 RUN apk add --no-cache make \
     ca-certificates \
     bash \
     curl \
-    jq \
     diffutils \
     git
+
+RUN echo $PATH
+
+
+
+
+RUN wget --no-check-certificate https://raw.githubusercontent.com/stedolan/jq/master/sig/jq-release.key -O /tmp/jq-release.key && \
+    wget --no-check-certificate https://raw.githubusercontent.com/stedolan/jq/master/sig/v${JQ_VERSION}/jq-linux64.asc -O /tmp/jq-linux64.asc && \
+    wget --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 -O /tmp/jq-linux64 && \
+   # gpg --import /tmp/jq-release.key && \
+   # gpg --verify /tmp/jq-linux64.asc /tmp/jq-linux64 && \
+    cp /tmp/jq-linux64 /usr/bin/jq && \
+    chmod +x /usr/bin/jq && \
+   # rm -f /tmp/jq-release.key && \
+   # rm -f /tmp/jq-linux64.asc && \
+   # rm -f /tmp/jq-linux64
+
 #Docker
-RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz \
-	&& tar -xvzf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin \
-	&& chmod -R +x /usr/local/bin/docker
+#RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz \
+#	&& tar -xvzf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin \
+#	&& chmod -R +x /usr/local/bin/docker
 
 #Kubectl
 #RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
@@ -28,4 +44,4 @@ RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-18
 #    helm plugin install https://github.com/hypnoglow/helm-s3.git
 #RUN helm init --client-only
 #RUN helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
-USER jenkins
+#USER jenkins
