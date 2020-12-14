@@ -1,3 +1,4 @@
+def apiScript='resources/serviceAccountAPItest.sh'
 pipeline {
     agent {
         kubernetes {
@@ -16,6 +17,12 @@ pipeline {
                     withKubeConfig(credentialsId: 'BearerClusterAdmin', namespace: 'cloudbees-core', serverUrl: 'https://35.196.164.234/') {
                         sh "kubectl version"
                         sh "kubectl ${params.kubectl_command}"
+                        timeout(time: 3, unit: 'MINUTES') {
+                            retry(5) {
+                                //call external shell script
+                                sh "${apiScript}"
+                            }
+                        }
                     }
                 }
             }
