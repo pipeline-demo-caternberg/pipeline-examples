@@ -13,8 +13,9 @@ pipeline {
             steps {
                 container('custom-agent') {
                     echo 'Hello World!'
-                     withKubeConfig([credentialsId: 'kubeconf']) {
+                     withKubeConfig([credentialsId: 'kubeconf', variable: "CONF"]) {
                         // sh 'kubectl apply -f my-kubernetes-directory'
+                         echo "$CONF"
                          sh "kubectl version"
                         sh "kubectl ${params.kubectl_command}"
                     }
