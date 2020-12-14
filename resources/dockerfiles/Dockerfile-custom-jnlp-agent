@@ -21,7 +21,7 @@ RUN echo $PATH
 #    cp /tmp/jq-linux64 /usr/bin/jq && \
 #    chmod +x /usr/bin/jq
 ADD https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64  /usr/local/bin/jq
-RUN  chmod +x /usr/local/bin/jq && /usr/local/bin/jq
+RUN  chmod 755 /usr/local/bin/jq && /usr/local/bin/jq
 
 #Docker
 #RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz \
