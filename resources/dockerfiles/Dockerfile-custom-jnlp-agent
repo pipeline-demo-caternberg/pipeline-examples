@@ -29,8 +29,8 @@ RUN  chmod +x /usr/bin/jq && /usr/bin/jq
 #	&& chmod -R +x /usr/local/bin/docker
 
 #Kubectl
-#RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
-#    chmod +x kubectl
+# install kubectl
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl; chmod +x ./kubectl; mv ./kubectl /usr/local/bin/kubectl
 
 #RUN curl -o helm.tar https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz && \
 #    tar xvf helm.tar && \
@@ -40,3 +40,5 @@ RUN  chmod +x /usr/bin/jq && /usr/bin/jq
 #RUN helm init --client-only
 #RUN helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
 #USER jenkins
+
+
