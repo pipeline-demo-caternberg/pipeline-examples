@@ -9,6 +9,7 @@ pipeline {
             steps {
                 container('custom-agent') {
                     echo 'Hello World!'
+                    sh "kubectl version"
                 }
             }
         }
