@@ -1,4 +1,4 @@
-def apiScript='resources/serviceAccountAPItest.sh'
+def apiScript='resources/scripts/serviceAccountAPItest.sh'
 pipeline {
     agent {
         kubernetes {
