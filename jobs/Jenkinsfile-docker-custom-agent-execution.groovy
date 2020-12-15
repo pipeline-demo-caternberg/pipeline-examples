@@ -8,7 +8,7 @@ pipeline {
         }
     }
     parameters {
-        string(name: 'kubectl_command', defaultValue: 'cluster-info',   description: 'put a kubectl command'),
+        string(name: 'kubectl_command', defaultValue: 'cluster-info',   description: 'put a kubectl command')
         //F.e AWS key can be taken here as well from Credstore
         string(name: 'user', defaultValue: 'caternberg',   description: 'user')
         password(name: 'passwd', defaultValue: 'secret', description: 'Enter Password')
