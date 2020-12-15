@@ -26,7 +26,7 @@ pipeline {
                        // sh "kubectl version"
                         sh "kubectl ${params.kubectl_command}"
                         sh "kubectl delete secret docker-credentials"
-                        sh "kubectl create secret docker-registry docker-credentials --docker-username=${params.user}  --docker-password=${params.passwd}  2>1 > /dev/null"
+                        sh "kubectl create secret docker-registry docker-credentials --docker-username=${params.user}  --docker-password=${params.passwd}  2>&1 > /dev/null"
                     }
                 }
             }
