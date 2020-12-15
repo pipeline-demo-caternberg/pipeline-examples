@@ -10,6 +10,18 @@ pipeline {
                 description: 'put a kubectl command')
     }
     stages {
+
+        stage('SAJenkinsK8sAccount') {
+            steps {
+                container('custom-agent') {
+                    echo 'Hello World!'
+                    withKubeConfig(credentialsId: 'a5e189cf-d372-4b05-9f39-8c24952850e2', namespace: 'cloudbees-core', serverUrl: 'https://35.196.164.234/') {
+                        sh "kubectl version"
+                        sh "kubectl ${params.kubectl_command}"
+                    }
+                }
+            }
+        }
         stage('SAJenkins') {
             steps {
                 container('custom-agent') {
