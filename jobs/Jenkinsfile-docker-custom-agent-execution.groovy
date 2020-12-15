@@ -1,4 +1,5 @@
 def apiScript='resources/scripts/serviceAccountAPItest.sh'
+def createDockerCredenetials='resources/scripts/kubectl-create-secret.sh'
 def credentialID="a5e189cf-d372-4b05-9f39-8c24952850e2"
 pipeline {
     agent {
@@ -19,6 +20,7 @@ pipeline {
                     withKubeConfig(credentialsId: "${credentialID}" ,namespace: 'cloudbees-core', serverUrl: 'https://35.196.164.234/') {
                         sh "kubectl version"
                         sh "kubectl ${params.kubectl_command}"
+                        sh "kubectl ${createDockerCredenetials}"
                     }
                 }
             }
@@ -27,7 +29,7 @@ pipeline {
             steps {
                 container('custom-agent') {
                     echo 'Hello World!'
-                    withKubeConfig(credentialsId: 'a5e189cf-d372-4b05-9f39-8c24952850e2', namespace: 'cloudbees-masters', serverUrl: 'https://35.196.164.234/') {
+                    withKubeConfig(credentialsId:  "${credentialID}" , namespace: 'cloudbees-masters', serverUrl: 'https://35.196.164.234/') {
                         sh "kubectl version"
                         sh "kubectl ${params.kubectl_command}"
                     }
