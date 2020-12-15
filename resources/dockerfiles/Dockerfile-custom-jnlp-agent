@@ -10,9 +10,11 @@ RUN apk add --no-cache make \
     bash \
     curl \
     diffutils \
+    jq \
     git
 
 RUN echo $PATH
+RUN jq
 
 
 
