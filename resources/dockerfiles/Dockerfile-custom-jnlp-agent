@@ -14,33 +14,6 @@ RUN apk add --no-cache make \
     git
 
 RUN echo $PATH
-RUN jq
-
-
-
-
-#RUN wget --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 -O /tmp/jq-linux64 && \
-#    cp /tmp/jq-linux64 /usr/bin/jq && \
-#    chmod +x /usr/bin/jq
-ADD https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64  /usr/local/bin/jq
-RUN  chmod 755 /usr/local/bin/jq && /usr/local/bin/jq
-
-#Docker
-#RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz \
-#	&& tar -xvzf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin \
-#	&& chmod -R +x /usr/local/bin/docker
 
 #Kubectl
-# install kubectl
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl; chmod +x ./kubectl; mv ./kubectl /usr/local/bin/kubectl
-
-#RUN curl -o helm.tar https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz && \
-#    tar xvf helm.tar && \
-#    cp linux-amd64/helm /usr/local/bin/ && \
-#    mkdir -p ~/.helm/plugins && \
-#    helm plugin install https://github.com/hypnoglow/helm-s3.git
-#RUN helm init --client-only
-#RUN helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
-#USER jenkins
-
-
