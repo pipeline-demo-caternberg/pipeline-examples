@@ -4,7 +4,7 @@
 
 
 NS=cloudbees-core
-
+kubectl delete clusterrole jenkins-robot
 cat << EOF > /tmp/clusterRole.yml
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -13,7 +13,7 @@ metadata:
 rules:
   - apiGroups: [""]
     resources: ["*", "*"]
-    verbs: ["get", "watch", "list"]
+    verbs: ["get", "watch", "list","delete","create"]
 EOF
 kubectl apply -f /tmp/clusterRole.yml
 
@@ -28,5 +28,5 @@ kubectl -n $NS  get secrets $TOKEN -o go-template --template '{{index .data "tok
 #eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2V[...]
 
 
-
-kubectl create cluserrolebinding jenkins-robot --clusterrole jenkins-robot --serviceaccount cloudbees-core:jenkins
+kubectl delete rolebinding jenkins-robot
+kubectl create rolebinding jenkins-robot --clusterrole jenkins-robot --serviceaccount cloudbees-core:jenkins
