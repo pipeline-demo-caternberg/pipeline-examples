@@ -15,7 +15,7 @@ pipeline {
                -c $JENKINS_HOME/credentials.xml 
            '''
                 }
-                withAWS(credentials: 'aws-creds', region: 'us-east-2') {
+                withAWS(credentials: 'AWS', region: 'us-east-2') {
                     sh "env | sort"
                     sh "mkdir -p /tmp/.aws"
                     sh '''
