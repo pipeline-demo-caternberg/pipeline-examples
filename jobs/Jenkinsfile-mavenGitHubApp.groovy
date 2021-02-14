@@ -18,9 +18,7 @@ pipeline {
             }
             steps {
                 container("maven") {
-                    // git url: 'https://github.com/pipeline-template-apps/maven-executable-jar-example.git', branch: 'master'
-                    // sh "ls -l"
-                    sh "echo ${A_VALUE}"
+                    git url: 'https://github.com/pipeline-template-apps/maven-executable-jar-example.git', branch: 'master'
                     configFileProvider([configFile(fileId: 'global-maven-settings', variable: 'MAVEN_SETTINGS_XML')]) {
                         sh "${MVN_COMMAND_DEPLOY} -s ${MAVEN_SETTINGS_XML}"
                     }
