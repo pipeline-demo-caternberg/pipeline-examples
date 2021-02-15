@@ -39,9 +39,7 @@ GHOrganization ghOrganization = github.getOrganization(githubOrganization)
  * creates a gen folder
  *
  */
-def env = System.getenv()
-println(env['JENKINS_HOME'])
-folder(env['JENKINS_HOME']+"/jobs/${genFolder}") {
+folder("${genFolder}") {
     description("Folder containing all generated pipelones from $gitHubUrl")
     properties {
         folderLibraries {
@@ -57,8 +55,7 @@ folder(env['JENKINS_HOME']+"/jobs/${genFolder}") {
                             scm {
                                 git {
                                     remote('git@github.com:pipeline-demo-caternberg/pipeline-examples.git')
-                                    //credentialsId('githubuserssh')
-                                    credentialsId("${credentials}")
+                                    credentialsId('githubuserssh')
                                 }}}
                     }
                 }
