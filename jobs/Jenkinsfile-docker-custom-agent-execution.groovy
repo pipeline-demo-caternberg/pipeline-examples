@@ -1,6 +1,6 @@
 def apiScript='resources/scripts/serviceAccountAPItest.sh'
 def createDockerCredenetials='resources/scripts/kubectl-create-secret.sh'
-def credentialID="c967a6c7-61c0-45cf-86f2-d331c5dbf711"
+def credentialID="51c45635-3f18-4b7f-a4d0-a0b71227aa95"
 pipeline {
     agent {
         kubernetes {
