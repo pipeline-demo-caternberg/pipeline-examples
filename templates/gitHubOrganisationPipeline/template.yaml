@@ -7,11 +7,11 @@ parameters:
   - name: repoName
     displayName: Git Repoistory
     type: string
-    defaultValue: maven-executable-jar-example
+    defaultValue: spring-boot-demo
   - name: organsisation
     displayName: GH organsisation
     type: string
-    defaultValue: pipeline-template-apps
+    defaultValue: pipeline-demo-caternberg
   - name: githubToken
     displayName: GitHubUserToken
     type: CREDENTIALS
@@ -21,7 +21,7 @@ multibranch:
   branchSource:
     github:
       repoOwner: ${organsisation}
-      repository: ${repoName}
+      #repository: ${repoName}
       credentialsId: ${githubToken}
   markerFile: pom.xml
 
