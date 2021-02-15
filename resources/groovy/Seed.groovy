@@ -55,7 +55,8 @@ folder("${genFolder}") {
                             scm {
                                 git {
                                     remote('git@github.com:pipeline-demo-caternberg/pipeline-examples.git')
-                                    credentialsId('githubuserssh')
+                                    //credentialsId('githubuserssh')
+                                    credentialsId("${credentials}")
                                 }}}
                     }
                 }
