@@ -41,6 +41,26 @@ GHOrganization ghOrganization = github.getOrganization(githubOrganization)
  */
 folder("${genFolder}") {
     description("Folder containing all generated pipelones from $gitHubUrl")
+    properties {
+        folderLibraries {
+            libraries {
+                libraryConfiguration {
+                    name("_github.com_pipeline-demo-caternberg_pipeline_examples")
+                    defaultVersion('master')
+                    implicit(false)
+                    allowVersionOverride(true)
+                    includeInChangesets(true)
+                    retriever {
+                        modernSCM {
+                            scm {
+                                git {
+                                    remote('git@github.com:pipeline-demo-caternberg/pipeline-examples.git')
+                                    credentialsId('githubuserssh')
+                                }}}
+                    }
+                }
+            }
+        }}
 }
 
 /**
