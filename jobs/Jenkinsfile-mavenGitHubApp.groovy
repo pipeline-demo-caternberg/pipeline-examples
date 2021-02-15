@@ -1,4 +1,4 @@
-library '_github_com_pipeline-templates-apps_pipeline-library' _
+library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
 def mavenPod = libraryResource 'podtemplates/podTemplate-maven.yaml'
 def MVN_COMMAND_PACKAGE = 'mvn -q clean package -Dembedd-dependencies -Dmaven.repo.local=/tmp/.m2'
 //def MVN_COMMAND_DEPLOY = "mvn  -Dembedd-dependencies -Dmaven.repo.local=/tmp/.m2 clean deploy "

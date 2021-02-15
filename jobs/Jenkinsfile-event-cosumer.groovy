@@ -1,4 +1,4 @@
-library '_github.com_pipeline-demo-caternberg_workflowLibs' _
+library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
 pipeline {
     /*comment to execute on master(f.e if curl is not available on agents).
     master executors has to be increased from default `0` to ```to get this executed ton master

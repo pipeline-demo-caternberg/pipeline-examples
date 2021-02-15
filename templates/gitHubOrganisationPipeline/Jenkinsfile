@@ -1,4 +1,4 @@
-library '_github_com_pipeline-templates-apps_pipeline-library' _
+library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
 def mavenPod = libraryResource 'podtemplates/podTemplate-maven.yaml'
 def kanikoPod = libraryResource 'podtemplates/podTemplate-kaniko.yaml'
 def testScript = libraryResource 'scripts/script.sh'

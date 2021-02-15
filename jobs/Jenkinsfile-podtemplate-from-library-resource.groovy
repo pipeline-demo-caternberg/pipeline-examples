@@ -1,4 +1,4 @@
-library '_github_com_pipeline-templates-apps_pipeline-library' _
+library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
 def maven = libraryResource 'podtemplates/podTemplate-maven.yaml'
 pipeline {
     agent {
