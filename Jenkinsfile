@@ -5,7 +5,7 @@ pipeline {
         }
     }
     stages {
-        stage('buildLib') {
+        stage('SeedDSL') {
             steps {
                 container('gradle') {
                     withCredentials([string(credentialsId: 'githubaccesstoken', variable: 'GH_ACCESS_TOKEN')]) {
