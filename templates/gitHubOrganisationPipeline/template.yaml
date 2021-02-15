@@ -16,12 +16,12 @@ parameters:
     displayName: GitHubUserToken
     type: CREDENTIALS
     defaultValue: githubuseraccesstoken
-#this scans a whole organisation. to scan just a single repo for all branches see https://docs.cloudbees.com/docs/admin-resources/latest/pipeline-templates-user-guide/managing-multibranch-pipeline-options#_example
+#see https://docs.cloudbees.com/docs/admin-resources/latest/pipeline-templates-user-guide/managing-multibranch-pipeline-options#_example
 multibranch:
   branchSource:
     github:
       repoOwner: ${organsisation}
-      #repository: ${repoName}
+      repository: ${repoName}
       credentialsId: ${githubToken}
   markerFile: pom.xml
 
