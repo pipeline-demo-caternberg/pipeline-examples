@@ -1,0 +1,27 @@
+type: pipeline-template
+version: 1
+name: GitHub Organisation Pipeline Template
+description: GitHub Organisation Pipeline Template
+templateType: MULTIBRANCH
+parameters:
+  - name: repoName
+    displayName: Git Repoistory
+    type: string
+    defaultValue: maven-executable-jar-example
+  - name: organsisation
+    displayName: GH organsisation
+    type: string
+    defaultValue: pipeline-template-apps
+  - name: githubToken
+    displayName: GitHubUserToken
+    type: CREDENTIALS
+    defaultValue: githubuseraccesstoken
+#this scans a whole organisation. to scan just a single repo for all branches see https://docs.cloudbees.com/docs/admin-resources/latest/pipeline-templates-user-guide/managing-multibranch-pipeline-options#_example
+multibranch:
+  branchSource:
+    github:
+      repoOwner: ${organsisation}
+      repository: ${repoName}
+      credentialsId: ${githubToken}
+  markerFile: pom.xml
+

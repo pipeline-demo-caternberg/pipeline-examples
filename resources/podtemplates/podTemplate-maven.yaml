@@ -1,0 +1,21 @@
+kind: Pod
+metadata:
+  name: maven
+spec:
+  containers:
+    - name: maven
+      image: maven:3.6.3-jdk-8
+      #runAsUser: 1000
+      command:
+        - cat
+      tty: true
+      workingDir: "/home/jenkins/agent"
+      #securityContext:
+        #runAsUser: 1000
+      volumeMounts:
+        - name: maven-cache
+          mountPath: /tmp/.m2
+  volumes:
+    - name: maven-cache
+      persistentVolumeClaim:
+        claimName: maven-repo
