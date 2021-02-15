@@ -39,7 +39,9 @@ GHOrganization ghOrganization = github.getOrganization(githubOrganization)
  * creates a gen folder
  *
  */
-folder("${genFolder}") {
+def env = System.getenv()
+println(env['JENKINS_HOME'])
+folder(env['JENKINS_HOME']+"/jobs/${genFolder}") {
     description("Folder containing all generated pipelones from $gitHubUrl")
     properties {
         folderLibraries {
