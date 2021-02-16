@@ -3,7 +3,11 @@ pipeline {
     stages {
         stage('BuildAndTest') {
             matrix {
-                agent any
+                agent {
+                    kubernetes {
+                        yamlFile 'resources/yaml/podTemplate-customagent.yml'
+                    }
+                }
                 axes {
                     axis {
                         name 'PLATFORM'

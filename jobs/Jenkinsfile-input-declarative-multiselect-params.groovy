@@ -36,7 +36,11 @@ def multiSelect = new ExtendedChoiceParameterDefinition("name",
 def userInput = input id: 'customID', message: 'Let\'s promote?', ok: 'Release!', parameters: [multiSelect]
 
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            yamlFile 'resources/yaml/podTemplate-customagent.yml'
+        }
+    }
     stages {
         stage("input") {
             steps {
