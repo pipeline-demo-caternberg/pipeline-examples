@@ -58,7 +58,7 @@ node {
     echo "${params.images}"
 }
 pipeline {
-    agent any
+    agent none
     stages {
         stage("params") {
             steps {

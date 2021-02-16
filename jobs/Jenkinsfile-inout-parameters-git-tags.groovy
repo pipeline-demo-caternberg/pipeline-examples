@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            yamlFile 'resources/yaml/podTemplate-tools-os.yml'
+        }
+    }
     stages {
         stage('My Stage') {
             steps {

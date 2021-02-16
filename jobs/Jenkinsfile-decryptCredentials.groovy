@@ -1,5 +1,9 @@
 pipeline {
-    agent { label 'master' }
+    agent {
+        kubernetes {
+            yamlFile 'resources/yaml/podTemplate-maven.yml'
+        }
+    }
     stages {
         stage('Dump credentials') {
             steps {

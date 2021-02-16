@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            yamlFile 'resources/yaml/podTemplate-maven.yml'
+        }
+    }
     stages {
 
         stage("notify") {
