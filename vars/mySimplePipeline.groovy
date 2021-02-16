@@ -6,7 +6,11 @@ def call(Map pipelineParams) {
     // body.delegate = pipelineParams
     //body()
     pipeline {
-        agent any
+        agent {
+            kubernetes {
+                yamlFile 'resources/yaml/podTemplate-maven.yml'
+            }
+        }
         stages {
             stage('Say Hello') {
                 steps {

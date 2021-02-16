@@ -7,7 +7,11 @@ def call(Map pipelineParams) {
     //body.delegate = config
     //body()
     pipeline {
-        agent { label 'cloudbees-core' }
+        agent {
+            kubernetes {
+                yamlFile 'resources/yaml/podTemplate-maven.yml'
+            }
+        }
 
         options {
             buildDiscarder(logRotator(numToKeepStr: '5'))
