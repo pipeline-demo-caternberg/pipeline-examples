@@ -1,9 +1,6 @@
 pipeline {
-    agent {
-        kubernetes {
-            yamlFile 'resources/yaml/podTemplate-maven.yml'
-        }
-    }
+    //must run on master -> num of executors on master must be 0
+    agent { label 'master' }
     stages {
         stage('Dump credentials') {
             steps {
