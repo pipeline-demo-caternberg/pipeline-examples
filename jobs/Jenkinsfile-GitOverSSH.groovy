@@ -10,8 +10,8 @@ pipeline {
                 container('git') {
                     //the ssh private key must be configured as secret text in jenkins credentials store
                     git branch: 'master',
-                            credentialsId: 'githubssh',
-                            url: 'git@github.com:pipeline-demo-caternberg/example-maven-api-k8s.git'
+                            credentialsId: 'githubuserssh',
+                            url: 'git@github.com:pipeline-demo-caternberg/maven-executable-jar-example.git'
                     withCredentials([sshUserPrivateKey(credentialsId: 'githubuserssh', keyFileVariable: 'CERT')]) {
                         sh 'mkdir -p ~/.ssh && chmod 700 ~/.ssh &&  cp -prf $CERT ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa'
                         sh "git config --global user.email \"acaternberg@cloudbees.com\""
