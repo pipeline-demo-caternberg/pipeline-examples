@@ -1,7 +1,7 @@
 type: pipeline-template
 version: 1
-name: GitHub Organisation Pipeline Template
-description: GitHub Organisation Pipeline Template
+name: Multibranch Pipeline Template
+description: Multibranch Pipeline Template
 templateType: MULTIBRANCH
 parameters:
   - name: repoName
@@ -11,7 +11,7 @@ parameters:
   - name: organsisation
     displayName: GH organsisation
     type: string
-    defaultValue: pipeline-template-apps
+    defaultValue: pipeline-demo-caternberg
   - name: githubToken
     displayName: GitHubUserToken
     type: CREDENTIALS
