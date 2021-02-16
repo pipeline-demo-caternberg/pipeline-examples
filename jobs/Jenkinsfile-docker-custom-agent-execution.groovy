@@ -7,23 +7,21 @@ pipeline {
             yamlFile 'resources/yaml/podTemplate-customagent.yml'
         }
     }
-    parameters {
-        string(name: 'kubectl_command', defaultValue: 'cluster-info',   description: 'put a kubectl command')
-        //F.e AWS key can be taken here as well from Credstore
-        string(name: 'user', defaultValue: 'caternberg',   description: 'user')
-        password(name: 'passwd', defaultValue: 'secret', description: 'Enter Password')
 
-
-
-    }
     stages {
-
+        stage('CustomAgent') {
+            steps {
+                container('custom-agent') {
+                    echo 'Hello World my custom agent!'
+                }
+            }
+        }
+        /**
         stage('SAJenkinsK8sAccount') {
             steps {
                 container('custom-agent') {
                     echo 'Hello World!'
                     withKubeConfig(credentialsId: "${credentialID}" ,namespace: 'cloudbees-core', serverUrl: 'https://35.196.164.234/') {
-                       // sh "kubectl version"
                         sh "kubectl ${params.kubectl_command}"
                         sh "kubectl delete secret docker-credentials"
                         sh "kubectl create secret docker-registry docker-credentials --docker-username=${params.user}  --docker-password=${params.passwd}  2>&1 > /dev/null"
@@ -42,7 +40,7 @@ pipeline {
                 }
             }
         }
-       /* stage('ClusterAdmin') {
+        stage('ClusterAdmin') {
             steps {
                 container('custom-agent') {
                     echo 'Hello World!'
