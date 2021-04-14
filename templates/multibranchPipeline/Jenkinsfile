@@ -3,7 +3,7 @@ def mavenPod = libraryResource 'podtemplates/podTemplate-maven.yaml'
 def kanikoPod = libraryResource 'podtemplates/podTemplate-kaniko.yaml'
 def testScript = libraryResource 'scripts/script.sh'
 //def MVN_COMMAND_PACKAGE = 'mvn -q clean package -Dembedd-dependencies -Dmaven.repo.local=/tmp/.m2'
-def MVN_COMMAND_DEPLOY = "mvn -e -Dembedd-dependencies -Dmaven.repo.local=/tmp/.m2 clean deploy "
+def MVN_COMMAND_DEPLOY = "mvn -e -Djansi.force=true -Dstyle.color=always  -Dembedd-dependencies -Dmaven.repo.local=/tmp/.m2 clean deploy "
 pipeline {
     //When applied at the top-level of the pipeline block no global agent will be allocated for the entire Pipeline run and each stage section will need to contain its own agent section. For example: agent none
     agent none
