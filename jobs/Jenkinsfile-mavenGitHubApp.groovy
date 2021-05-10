@@ -18,9 +18,9 @@ pipeline {
             }
             steps {
                 container("maven") {
-                    git url: 'https://github.com/pipeline-template-apps/maven-executable-jar-example.git', branch: 'master'
+                    git url: 'https://github.com/pipeline-demo-caternberg/maven-executable-jar-example.git', branch: 'feature-one'
                     configFileProvider([configFile(fileId: 'global-maven-settings', variable: 'MAVEN_SETTINGS_XML')]) {
-                        sh "${MVN_COMMAND_DEPLOY} -s ${MAVEN_SETTINGS_XML}"
+                        sh "${MVN_COMMAND_PACKAGE} -s ${MAVEN_SETTINGS_XML}"
                     }
                     stash includes: '**/*', name: 'app'
 
@@ -31,11 +31,24 @@ pipeline {
                     echo "scan for mvn issues..."
                     scanForIssues tool: mavenConsole(name: 'mvn')
                     //Seet GitHub App https://docs.cloudbees.com/docs/cloudbees-ci/2.235.1.2/traditional-admin-guide/github-app-auth#_creating_the_github_app
-                    publishIssues([])
+                  //  publishIssues([])
                     //https://www.jenkins.io/blog/2020/08/31/github-checks-api-plugin-coding-phase-3/
-                    publishChecks detailsURL: '${BUILD_URL}', name: 'mvn build', text: 'mvn build', title: 'mvn build'
+                 //   publishChecks detailsURL: '${BUILD_URL}', name: 'mvn build', text: 'mvn build', title: 'mvn build'
                 }
             }
+        }
+    }
+    post {
+        failure {
+            echo "scan for mvn issues..."
+            scanForIssues tool: mavenConsole(name: 'mvn')
+            //Seet GitHub App https://docs.cloudbees.com/docs/cloudbees-ci/2.235.1.2/traditional-admin-guide/github-app-auth#_creating_the_github_app
+           // publishIssues([])
+            //https://www.jenkins.io/blog/2020/08/31/github-checks-api-plugin-coding-phase-3/
+           // publishChecks detailsURL: '${BUILD_URL}', name: 'mvn build', text: 'mvn build', title: 'mvn build'
+        }
+        success {
+            echo "SUCCESS"
         }
     }
 }
