@@ -4,14 +4,10 @@ name: Multibranch Pipeline Template
 description: Multibranch Pipeline Template
 templateType: MULTIBRANCH
 parameters:
-  - name: repoName
+  - name: repoUrl
     displayName: Git Repoistory
     type: string
-    defaultValue: maven-executable-jar-example
-  - name: organsisation
-    displayName: GH organsisation
-    type: string
-    defaultValue: org-caternberg
+    defaultValue: git@github.com:org-caternberg/maven-executable-jar-example.git
   - name: githubToken
     displayName: GitHubUserToken
     type: CREDENTIALS
@@ -20,7 +16,6 @@ parameters:
 multibranch:
   branchSource:
     github:
-      repoOwner: ${organsisation}
-      repository: ${repoName}
+      remote: ${repoUrl}
       credentialsId: ${githubToken}
   markerFile: pom.xml
