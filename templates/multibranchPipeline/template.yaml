@@ -4,18 +4,24 @@ name: Multibranch Pipeline Template
 description: Multibranch Pipeline Template
 templateType: MULTIBRANCH
 parameters:
-  - name: repoUrl
-    displayName: Git Repoistory
+  - name: repoOwner
     type: string
-    defaultValue: git@github.com:org-caternberg/maven-executable-jar-example.git
+    displayName: GitHub Organization
+    defaultValue: org-caternberg
+  - name: repoName
+    displayName: Git Repoistory Name
+    type: string
+    defaultValue: maven-executable-jar-example
   - name: githubToken
     displayName: GitHubUserToken
     type: CREDENTIALS
     defaultValue: githubuseraccesstoken
 #see https://docs.cloudbees.com/docs/admin-resources/latest/pipeline-templates-user-guide/managing-multibranch-pipeline-options#_example
 multibranch:
+  markerFile: pom.xml 
   branchSource:
     github:
-      remote: ${repoUrl}
+      id: maven-app
       credentialsId: ${githubToken}
-  markerFile: pom.xml
+      repoOwner: ${repoOwner}
+      repository: ${repoName}
