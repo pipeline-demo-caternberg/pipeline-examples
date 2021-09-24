@@ -40,7 +40,7 @@ pipeline {
                 container("maven") {
                     sh "echo ${A_VALUE}"
                     ansiColor('xterm') {
-                      sh "${MVN_COMMAND_DEPLOY} -s ${MAVEN_SETTINGS_XML}"
+                      sh "${MVN_COMMAND_DEPLOY}"
                    }
                     junit '**/target/surefire-reports/TEST-*.xml'
                     archive '**/target/*.jar'
