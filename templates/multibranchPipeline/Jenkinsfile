@@ -39,14 +39,11 @@ pipeline {
             steps {
                 container("maven") {
                     sh "echo ${A_VALUE}"
-                   // configFileProvider([configFile(fileId: 'global-maven-settings', variable: 'MAVEN_SETTINGS_XML')]) {
-                        sh "cat ${MAVEN_SETTINGS_XML}"
-                        ansiColor('xterm') {
-                            sh "${MVN_COMMAND_DEPLOY} -s ${MAVEN_SETTINGS_XML}"
-                        }
-                        junit '**/target/surefire-reports/TEST-*.xml'
-                        archive '**/target/*.jar'
-                //    }
+                    ansiColor('xterm') {
+                      sh "${MVN_COMMAND_DEPLOY} -s ${MAVEN_SETTINGS_XML}"
+                   }
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archive '**/target/*.jar'
                     stash includes: '**/*', name: 'app'
                 }
             }
