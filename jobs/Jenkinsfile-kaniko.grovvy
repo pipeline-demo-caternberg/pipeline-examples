@@ -45,8 +45,17 @@ pipeline {
   stages {
     stage('Build with Kaniko') {
       steps {
-        git 'https://github.com/jenkinsci/docker-inbound-agent.git'
-        sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=mydockerregistry:5000/myorg/myimage'
+               git 'https://github.com/pipeline-demo-caternberg/pipeline-examples.git'
+                 sh 'ls -lR'
+                withEnv(['PATH+EXTRA=/busybox:/kaniko']) {
+                        sh '''#!/busybox/sh
+                    /kaniko/executor  --dockerfile $(pwd)/resources/dockerfiles/Dockerfile-custom-jnlp-agent --insecure --skip-tls-verify --cache=false  --context $(pwd) --destination caternberg/jenkins-agent-customized:BUILD_NUMBER-${BUILD_NUMBER}
+                '''
+                        sh '''#!/busybox/sh
+                    /kaniko/executor  --dockerfile $(pwd)/resources/dockerfiles/Dockerfile-custom-jnlp-agent --insecure --skip-tls-verify --cache=true  --context $(pwd) --destination caternberg/jenkins-agent-customized:latest
+                '''
+                
+            }
       }
     }
   }
