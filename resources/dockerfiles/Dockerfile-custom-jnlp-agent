@@ -11,6 +11,7 @@ RUN apk add --no-cache make \
     curl \
     diffutils \
     jq \
+    yq \
     git
 
 RUN echo $PATH
