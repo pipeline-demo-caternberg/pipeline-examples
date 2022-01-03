@@ -1,4 +1,5 @@
 // Uses Declarative syntax to run commands inside a container.
+//This Pipeline shows how to clone a submodule repo via ssh
 pipeline {
     environment{
         GIT_DISCOVERY_ACROSS_FILESYSTEM=1
@@ -20,14 +21,15 @@ spec:
       securityContext:
         runAsUser: 1000
 '''
-
-            defaultContainer 'custom-agent'
+         defaultContainer 'custom-agent'
         }
     }
     stages {
         stage('Hello') {
             steps {
                 echo 'Hello World'
+                //see https://issues.jenkins.io/browse/JENKINS-60529
+                //a submodule repo needs to be prepared first, see https://git-scm.com/book/en/v2/Git-Tools-Submodules and git@github.com:org-caternberg/submoduletest.git'
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']],
                               extensions: [
                                       [$class: 'SubmoduleOption',
