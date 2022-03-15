@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        kubernetes {
-            yamlFile 'resources/yaml/podTemplate-gradle.yml'
-        }
-    }
+    agent any
     stages {
         stage('SeedDSL') {
             steps {
