@@ -3,7 +3,7 @@ def mavenPod = libraryResource 'podtemplates/podTemplate-maven.yaml'
 def kanikoPod = libraryResource 'podtemplates/podTemplate-kaniko.yaml'
 def testScript = libraryResource 'scripts/script.sh'
 //def MVN_COMMAND_PACKAGE = 'mvn -q clean package -Dembedd-dependencies -Dmaven.repo.local=/tmp/.m2'
-def MVN_COMMAND_DEPLOY = "mvn  -e -Djansi.force=true -Dstyle.color=always  -Dembedd-dependencies -Dmaven.repo.local=/tmp/.m2 clean deploy "
+def MVN_COMMAND_DEPLOY = "mvn  -e -Djansi.force=true -Dstyle.color=always  -Dembedd-dependencies -Dmaven.repo.local=/tmp/.m2  -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true clean deploy "
 //def MVN_COMMAND_DEPLOY = "mvn  -e -Djansi.force=true -Dstyle.color=always  -Dembedd-dependencies clean deploy"
 
 pipeline {
