@@ -42,6 +42,7 @@ pipeline {
                     sh "echo ${A_VALUE}"
                     configFileProvider([configFile(fileId: 'global-maven-settings', variable: 'MAVEN_SETTINGS_XML')]) {
                         sh "cat ${MAVEN_SETTINGS_XML}"
+                        sh "ls -l"
                         ansiColor('xterm') {
                            // sh "${MVN_COMMAND_DEPLOY} -s ${MAVEN_SETTINGS_XML}"
                             sh "${MVN_COMMAND_DEPLOY}"
