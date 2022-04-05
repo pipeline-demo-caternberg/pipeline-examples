@@ -1,6 +1,7 @@
 library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
 def mavenPod = libraryResource 'podtemplates/podTemplate-maven.yaml'
 def kanikoPod = libraryResource 'podtemplates/podTemplate-kaniko.yaml'
+def sonarCubePod = libraryResource 'podtemplates/podtemplate-qs-sonarqube.yaml'
 def testScript = libraryResource 'scripts/script.sh'
 //def MVN_COMMAND_PACKAGE = 'mvn -q clean package -Dembedd-dependencies -Dmaven.repo.local=/tmp/.m2'
 //def MVN_COMMAND_DEPLOY = "mvn -e -Djansi.force=true -Dstyle.color=always  -Dembedd-dependencies -Dmaven.repo.local=/tmp/.m2  -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true spring-boot:run"
@@ -33,7 +34,7 @@ pipeline {
         stage("build") {
             agent {
                 kubernetes {
-                    label 'mavenPod'
+                    //#deprectatedlabel 'mavenPod'
                     defaultContainer "maven"
                     yaml mavenPod
                 }
@@ -69,7 +70,7 @@ pipeline {
                 stage("Test Firefox") {
                     agent {
                         kubernetes {
-                            label 'mavenPodFireFox'
+                            //#deprectated label 'mavenPodFireFox'
                             defaultContainer "maven"
                             yaml mavenPod
                         }
@@ -135,7 +136,7 @@ pipeline {
             when { branch pattern: "feature-.*", comparator: "REGEXP" }
             agent {
                 kubernetes {
-                    label 'qsscan'
+                    //#deprectatedlabel 'qsscan'
                     defaultContainer "maven"
                     yaml mavenPod
                 }
@@ -161,13 +162,29 @@ pipeline {
                 }
             }
         }
+
+        stage('QS') {
+            options {
+                skipDefaultCheckout(true)
+            }
+            steps {
+                container('sonarscanner') {
+                    withSonarQubeEnv("sonarqube") {
+                        sh "ls -l"
+
+                        sh "sonar-scanner -Dproject.settings=./sonar-project.properties"
+                    }
+                }
+            }
+        }
+
         stage("Docker") {
             when {
                 branch 'master'
             }
             agent {
                 kubernetes {
-                    label 'dockerKaniko'
+                    //#deprectated label 'dockerKaniko'
                     defaultContainer "kaniko"
                     yaml kanikoPod
                 }
