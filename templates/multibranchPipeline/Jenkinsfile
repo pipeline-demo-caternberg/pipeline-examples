@@ -132,38 +132,9 @@ pipeline {
                 }
             }
         }
-        stage("QS Scan") {
-            when { branch pattern: "feature-.*", comparator: "REGEXP" }
-            agent {
-                kubernetes {
-                    //#deprectatedlabel 'qsscan'
-                    defaultContainer "maven"
-                    yaml mavenPod
-                }
-            }
-            options {
-                skipDefaultCheckout(true)
-            }
-            steps {
-                unstash 'app'
-                sh "echo do QS Scans "
-            }
-            post {
-                success {
-                    echo "QS Scans Successfully"
-                    //Slack notification ....
-                    //Jira update
-                }
-                failure {
-                    echo "QS Scans Successfully"
-                    echo "QS Scan Failed"
-                    //Slack notification....
-                    //Jira update
-                }
-            }
-        }
 
-        stage('Sonar') {
+
+     /*   stage('Sonar') {
             agent {
                 kubernetes {
                     //#deprectated label 'qsscan'
@@ -182,7 +153,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
 
         stage("Docker") {
             when {
