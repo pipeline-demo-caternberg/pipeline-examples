@@ -129,8 +129,3 @@ githubProtectBranch(['master','feature-one'],
   'sa-team',
   'todo-api')
 ```
-
-
-
-
-
