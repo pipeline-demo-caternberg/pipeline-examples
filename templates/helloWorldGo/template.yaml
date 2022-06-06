@@ -24,12 +24,12 @@ multibranch:
       repository: ${repoName}
       credentialsId: ${githubToken}
       traits:
-        - bitbucketBranchDiscovery:
+        - gitHubPullRequestDiscovery:
             strategyId: 1
-        - bitbucketPullRequestDiscovery:
+        - gitHubBranchDiscovery:
             strategyId: 1
-        - bitbucketForkDiscovery:
+        - gitHubForkDiscovery:
             strategyId: 1
             trust:
-              $class: TrustTeamForks
+              $class: TrustPermission
   markerFile: main.go
