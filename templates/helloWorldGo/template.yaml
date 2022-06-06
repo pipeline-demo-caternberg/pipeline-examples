@@ -1,0 +1,35 @@
+type: pipeline-template
+version: 1
+name: Multibranch Pipeline Template
+description: Multibranch Pipeline Template
+templateType: MULTIBRANCH
+parameters:
+  - name: repoName
+    displayName: Git Repoistory
+    type: string
+    defaultValue: helloworldGo
+  - name: organsisation
+    displayName: GH organsisation
+    type: string
+    defaultValue: pipeline-demo-caternberg
+  - name: githubToken
+    displayName: GitHubUserToken
+    type: CREDENTIALS
+    defaultValue: githubuseraccesstoken
+#see https://docs.cloudbees.com/docs/admin-resources/latest/pipeline-templates-user-guide/managing-multibranch-pipeline-options#_example
+multibranch:
+  branchSource:
+    github:
+      repoOwner: ${organsisation}
+      repository: ${repoName}
+      credentialsId: ${githubToken}
+      traits:
+        - bitbucketBranchDiscovery:
+            strategyId: 1
+        - bitbucketPullRequestDiscovery:
+            strategyId: 1
+        - bitbucketForkDiscovery:
+            strategyId: 1
+            trust:
+              $class: TrustTeamForks
+  markerFile: main.go
