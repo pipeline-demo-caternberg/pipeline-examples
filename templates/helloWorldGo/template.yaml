@@ -1,7 +1,7 @@
 type: pipeline-template
 version: 1
-name: Multibranch Pipeline Template
-description: Multibranch Pipeline Template
+name: Go MB Template
+description: Multibranch Pipeline Template for Go apps
 templateType: MULTIBRANCH
 parameters:
   - name: repoName
