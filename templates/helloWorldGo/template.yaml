@@ -28,6 +28,8 @@ multibranch:
             strategyId: 1
         - gitHubBranchDiscovery:
             strategyId: 1
+        - gitHubSshCheckout:
+            credentialsId: ${githubToken}
         - gitHubForkDiscovery:
             strategyId: 1
             trust:
