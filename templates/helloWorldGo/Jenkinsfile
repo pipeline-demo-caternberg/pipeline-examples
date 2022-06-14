@@ -41,6 +41,14 @@ spec:
                 }
             }
         }
+        stage(QA) {
+            steps {
+                container('golang') {
+                    echo "QA todo" 
+                }
+            }
+        }
+
         stage('Make Image') {
             environment {
                 PATH        = "/busybox:$PATH"
