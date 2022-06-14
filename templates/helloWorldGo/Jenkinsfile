@@ -58,14 +58,14 @@ spec:
                 }
             }
         }
-        /*s
-        tage(QA) {
+        
+        stage(QA) {
             steps {
                 container('golang') {
                     echo "QA todo" 
                 }
             }
         }
-        */
+        
     }
 }
