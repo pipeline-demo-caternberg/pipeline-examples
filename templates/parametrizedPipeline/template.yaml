@@ -1,6 +1,5 @@
 type: pipeline-template
 version: 1
-
 name: Parametrized Pipeline Template
 description: Parametrized Pipeline Template
 
