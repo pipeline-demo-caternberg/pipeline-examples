@@ -1,9 +1,11 @@
+library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
 pipeline {
     agent any
     stages {
         stage('Say Hello') {
             steps {
-                echo "Hello World! ${firstname}"
+                //echo "Hello World! ${firstname}"
+                helloWorld $firstname
             }
         }
     }
