@@ -1,10 +1,18 @@
 library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
+def mavenPod = libraryResource 'podtemplates/podTemplate-maven.yaml'
+// Uses Declarative syntax to run commands inside a container.
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            //#deprectatedlabel 'mavenPod'
+            defaultContainer "maven"
+            yaml mavenPod
+        }
+    }
     stages {
-        stage('Say Hello') {
+        stage('Hello') {
             steps {
-                //echo "Hello World! ${firstname}"
+                sh 'hostname'
                 helloWorld "${firstname}"
             }
         }
