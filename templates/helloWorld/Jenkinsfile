@@ -16,8 +16,6 @@ pipeline {
                 helloWorld "${firstname}"
             }
         }
-    }
-    stages {
         stage('Hello 2') {
             steps {
                 sh 'hostname'
