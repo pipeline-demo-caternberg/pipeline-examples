@@ -3,9 +3,9 @@ def call() {
         echo "$eventCause"
         def url = eventCause[0].event.url
         echo "URL: $url"
-        echo "curl -v  -u  admin:admin   $url/consoleText"
-        def log = sh(script: """
+        sh "curl -v  -u  admin:admin   $url/consoleText "
+        sh """
              curl -v  -u  admin:admin   $url/consoleText
-          """, returnStdout: true)
-        echo LOG: "$log"
+          """
+
 }
