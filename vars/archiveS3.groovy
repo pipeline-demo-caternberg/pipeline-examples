@@ -7,7 +7,7 @@ def call() {
         def scriptS3 = libraryResource 'scripts/curlBuildLog.sh'
        //echo "${scriptS3}"
         //echo "curl -v  -u  admin:admin   $url/consoleText"
-        sh "pwd"
+        echo sh(script: 'env|sort', returnStdout: true)
    /*     timeout(time: 10, unit: 'SECONDS') {
                 sh "${scriptS3} ${url}"
         }
