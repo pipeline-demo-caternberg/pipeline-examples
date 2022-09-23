@@ -4,9 +4,9 @@ def call() {
         def url = eventCause[0].event.url
         echo "URL: $url"
         echo "TEST TESTE"
-        def scriptS3 = libraryResource 'scripts/curlBuildLog.sh'
+       // def scriptS3 = libraryResource 'scripts/curlBuildLog.sh'
         //echo "curl -v  -u  admin:admin   $url/consoleText"
-        sh "${scriptS3} $url"
+        //sh "${scriptS3} $url"
 
 
 }
