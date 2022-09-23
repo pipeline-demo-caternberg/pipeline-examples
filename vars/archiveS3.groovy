@@ -5,7 +5,7 @@ def call() {
         def url = eventCause[0].event.url
         echo "URL: $url"
         def log = sh(script: """
-             curl -v  -u  ${jenkinsUserAndToken}  --silent  $url/consoletext'
+             curl -v  -u  admin:admin  --silent  $url/consoletext'
           """, returnStdout: true)
         echo LOG: "$log"
     }
