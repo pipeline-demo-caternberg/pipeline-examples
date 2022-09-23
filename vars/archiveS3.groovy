@@ -5,9 +5,12 @@ def call() {
         echo "URL: $url"
         echo "TEST TESTE"
         def scriptS3 = libraryResource 'scripts/curlBuildLog.sh'
-       echo "${scriptS3}"
+       //echo "${scriptS3}"
         //echo "curl -v  -u  admin:admin   $url/consoleText"
-        //sh "${scriptS3} $url"
+        timeout(time: 10, unit: 'SECONDS') {
+                sh "${scriptS3} ${url}"
+        }
+
 
 
 }
