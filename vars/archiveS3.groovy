@@ -5,7 +5,9 @@ def call() {
         def gitcommit =  eventCause[0].event.gitcommit
         def buildtag =  eventCause[0].event.buildtag
         echo "URL: $url"
-       // def scriptS3 = libraryResource 'scripts/curlBuildLog.sh'
+
+
+        def scriptS3 = libraryResource 'scripts/curlBuildLog.sh'
         //copy the logs and files to be archieved
         sh(script: """
         
