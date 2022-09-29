@@ -27,7 +27,7 @@ def call() {
          """)
 
         //upload to s6
-        //
-        sh "echo up0load to S3 using aws cli "
+        //TODO: implement s3 upload by aws-cli or rest
+        echo "upload to S3 using aws cli "
 
 }
