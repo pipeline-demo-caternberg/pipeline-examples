@@ -12,6 +12,7 @@ def call() {
                   mkdir -p TARFOLDER
                   cd TARFOLDER
                   curl   -u  admin:admin $url/consoleText -o build.log
+                  curl -O   -u  admin:admin $url/archive/test.zip 
                   ls -ltr
                   cat build.log
                   #TODO: copy all wanted fies to here 
