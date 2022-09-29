@@ -4,11 +4,11 @@ def call() {
         def url = eventCause[0].event.url
         echo "URL: $url"
        // def scriptS3 = libraryResource 'scripts/curlBuildLog.sh'
-        //retrive the logs and files to be archieved
+        //copy the logs and files to be archieved
         sh(script: """
-                  ARCHIVEFOLDER=TARFOLDER
-                  mkdir -p $ARCHIVEFOLDER
-                  cd $ARCHIVEFOLDER
+        
+                  mkdir -p TARFOLDER
+                  cd TARFOLDER
                   curl -v  -u  admin:admin $url/consoleText -0
                   ls -ltr
                   #TODO: copy all wanted fies to here 
