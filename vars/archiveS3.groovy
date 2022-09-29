@@ -9,14 +9,14 @@ def call() {
         
                   mkdir -p TARFOLDER
                   cd TARFOLDER
-                  curl -v  -u  admin:admin $url/consoleText -0
+                  curl   -u  admin:admin $url/consoleText -o build.log
                   ls -ltr
                   #TODO: copy all wanted fies to here 
          """)
         //verify
         //TODO: add your verification impl
 
-        //packacge
+        //archive
         sh(script: """
                  cd $WORKSPACE
                  #TODO get BUILD_TAG, GIT_COMMIT  from json event data payload
