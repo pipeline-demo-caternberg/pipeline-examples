@@ -22,8 +22,7 @@ def call() {
         //archive
         sh(script: """
                  cd $WORKSPACE
-                 #TODO get BUILD_TAG, GIT_COMMIT  from json event data payload
-                tar -cvzf archive-$buildtag-$gitcommit-\$(date +%s%3N).tar.gz TARFOLDER/*
+                 tar -cvzf archive-$buildtag-$gitcommit-\$(date +%s%3N).tar.gz TARFOLDER/*
                
          """)
 
