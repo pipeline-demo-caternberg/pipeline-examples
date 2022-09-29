@@ -26,7 +26,10 @@ pipeline {
     post {
         always {
             echo "${BUILD_URL}"
-            publishEvent event: jsonEvent("{eventName: 'archive', url: \"$BUILD_URL\"}"), verbose: true
+            //enable for real commits
+            //publishEvent event: jsonEvent("{eventName: 'archive', url: \"$BUILD_URL\",build_tag: \"$BUILD_TAG\", git_commit: \"$GIT_COMMIT\"}"), verbose: true
+            //fake git commit
+            publishEvent event: jsonEvent("{eventName: 'archive', url: \"$BUILD_URL\",buildtag: \"$BUILD_TAG\", gitcommit: '1234567'}"), verbose: true
 
         }
     }
