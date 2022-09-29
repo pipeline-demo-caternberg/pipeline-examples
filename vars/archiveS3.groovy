@@ -19,7 +19,7 @@ def call() {
         //packacge
         sh(script: """
                  cd $WORKSPACE
-                 //TODO get BUILD_TAG, GIT_COMMIT  from json event data payload
+                 #TODO get BUILD_TAG, GIT_COMMIT  from json event data payload
                 tar -cvzf archive-\$(date +%s%3N).tar.gz TARFOLDER/*
                
          """)
