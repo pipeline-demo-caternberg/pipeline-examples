@@ -13,6 +13,7 @@ def call() {
                   cd TARFOLDER
                   curl   -u  admin:admin $url/consoleText -o build.log
                   ls -ltr
+                  cat build.log
                   #TODO: copy all wanted fies to here 
          """)
         //verify
