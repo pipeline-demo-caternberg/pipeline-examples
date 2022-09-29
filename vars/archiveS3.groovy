@@ -2,6 +2,8 @@ def call() {
         def eventCause = currentBuild.getBuildCauses("com.cloudbees.jenkins.plugins.pipeline.events.EventTriggerCause")
         echo "$eventCause"
         def url = eventCause[0].event.url
+        def git_commit =  eventCause[0].event.git_commit
+        def build_tag =  eventCause[0].event.build_tag
         echo "URL: $url"
        // def scriptS3 = libraryResource 'scripts/curlBuildLog.sh'
         //copy the logs and files to be archieved
@@ -20,7 +22,7 @@ def call() {
         sh(script: """
                  cd $WORKSPACE
                  #TODO get BUILD_TAG, GIT_COMMIT  from json event data payload
-                tar -cvzf archive-\$(date +%s%3N).tar.gz TARFOLDER/*
+                tar -cvzf archive-\${build_tah}-\${git_commit}-\$(date +%s%3N).tar.gz TARFOLDER/*
                
          """)
 
