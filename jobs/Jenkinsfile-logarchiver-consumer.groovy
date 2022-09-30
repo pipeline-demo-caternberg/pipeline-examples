@@ -13,9 +13,16 @@ pipeline {
     }
     stages {
         stage('archive') {
+            //see https://stackoverflow.com/questions/56534579/how-to-pass-aws-secret-key-and-id-in-jenkins-build-pipeline-script
+           /*
+            environment {
+                AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
+                AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+            }
+            */
             steps {
+                echo "AWS_KEY ${AWS_ACCESS_KEY_ID}"
                 archiveS3 ()
-                 //sh " curl  -k   -u  admin:admin https://sda.acaternberg.flow-training.beescloud.com/controller0/job/folder-one/job/Logarchiver-prodcuer/112/consoleText"
             }
         }
 

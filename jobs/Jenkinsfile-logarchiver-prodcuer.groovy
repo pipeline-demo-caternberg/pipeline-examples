@@ -20,6 +20,8 @@ pipeline {
             steps {
                 sh 'hostname'
                 helloWorld "Andreas"
+                sh "touch test.zip"
+                archiveArtifacts allowEmptyArchive: true, artifacts: '*', followSymlinks: false
             }
         }
     }
@@ -28,6 +30,7 @@ pipeline {
             echo "${BUILD_URL}"
             //enable for real commits
             //publishEvent event: jsonEvent("{eventName: 'archive', url: \"$BUILD_URL\",build_tag: \"$BUILD_TAG\", git_commit: \"$GIT_COMMIT\"}"), verbose: true
+
             //fake git commit
             publishEvent event: jsonEvent("{eventName: 'archive', url: \"$BUILD_URL\",buildtag: \"$BUILD_TAG\", gitcommit: '1234567'}"), verbose: true
 
