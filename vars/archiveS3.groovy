@@ -6,8 +6,10 @@ def call() {
         def buildtag =  eventCause[0].event.buildtag
         echo "URL: $url"
 
+        //Example on how to load an external script from SL resources
+        //def scriptS3 = libraryResource 'scripts/curlBuildLog.sh'
+       //sh "${scriptS3}"
 
-        def scriptS3 = libraryResource 'scripts/curlBuildLog.sh'
         //copy the logs and files to be archieved
         sh(script: """
         
@@ -29,8 +31,8 @@ def call() {
                
          """)
 
-        //upload to s6
+        //upload to s3
         //TODO: implement s3 upload by aws-cli or rest
-        echo "upload to S3 using aws cli "
+        echo "upload to S3 using aws cli , curl or any other valid API"
 
 }
