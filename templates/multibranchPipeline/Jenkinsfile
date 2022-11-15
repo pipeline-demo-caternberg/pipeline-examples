@@ -46,7 +46,8 @@ pipeline {
                         sh "cat ${MAVEN_SETTINGS_XML}"
                         sh "ls -l"
                         ansiColor('xterm') {
-                            sh "${MVN_COMMAND_DEPLOY} -s ${MAVEN_SETTINGS_XML}"
+                          //  sh "${MVN_COMMAND_DEPLOY} -s ${MAVEN_SETTINGS_XML}"
+                            sh "${MVN_COMMAND_DEPLOY}"
                         }
                         junit '**/target/surefire-reports/TEST-*.xml'
                         archive '**/target/*.jar'
