@@ -1,4 +1,4 @@
-This repo contains example Jenkins Pipelines inside the jobs directory.
+This repo contains sample Jenkins Pipelines, Shared Libraries and Pipeline Template catalogs.
 
 Directories
 * jobs: contains sample Pipelines
