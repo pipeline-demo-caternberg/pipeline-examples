@@ -14,6 +14,10 @@ pipeline {
         stage('Example') {
             steps {
                 echo "${params.Greeting} World!"
+                script {
+                    echo params.Greeting
+                }
+
             }
         }
     }
