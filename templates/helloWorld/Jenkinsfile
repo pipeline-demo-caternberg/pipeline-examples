@@ -22,5 +22,11 @@ pipeline {
                 helloWorld "${firstname}"
             }
         }
+          stage('Hello 3') {
+                    steps {
+                        sh 'hostname'
+                        helloWorld "${firstname}"
+                    }
+                }
     }
 }
