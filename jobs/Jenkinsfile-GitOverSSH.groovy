@@ -14,7 +14,7 @@ pipeline {
                             url: 'git@github.com:pipeline-demo-caternberg/maven-executable-jar-example.git'
                     withCredentials([sshUserPrivateKey(credentialsId: 'githubuserssh', keyFileVariable: 'CERT')]) {
                         sh 'mkdir -p ~/.ssh && chmod 700 ~/.ssh &&  cp -prf $CERT ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa'
-                        sh "git config --global user.email \"acaternberg@cloudbees.com\""
+                        sh "git config --global user.email \"user@cloudbees.com\""
                         sh "git config --global user.name \"cccaternberg\""
                         sh "eval `ssh-agent -s`  && ssh-add ~/.ssh/id_rsa"
                         sh "ssh-keyscan -H github.com >> ~/.ssh/known_hosts"
