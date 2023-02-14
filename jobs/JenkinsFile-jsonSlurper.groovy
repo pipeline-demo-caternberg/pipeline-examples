@@ -5,12 +5,13 @@ def pipelineProperties = libraryResource 'json/pipelineProperties.json'
 //print pipelineProperties
 
 //HashMaps requires Jenkins Script Approval!
-LinkedHashMap repoMap = new LinkedHashMap();
+//LinkedHashMap repoMap = new LinkedHashMap();
 
 //Strings doesnt require Jenkins Script Approval!, so this should be preferred
 String repo = "";
 String id = "";
 String key = "";
+Integer timeout = 0;
 // ‘checkout scm’ is only available when using “Multibranch Pipeline” or “Pipeline script from SCM”
 //For Git
 def repositoryUrl = scm.userRemoteConfigs[0].url
@@ -24,8 +25,9 @@ new JsonSlurper().parseText(pipelineProperties).each {
         repo = it.repo
         id = it.id
         key = it.key1
+        timeout = it.tinmeout
         //HashMaps requires Jenkins Script Approval!
-        repoMap << it
+        //repoMap << it
     }
 }
 println repoMap
@@ -33,32 +35,24 @@ println repoMap
 pipeline {
     agent {
         kubernetes {
-            // Rather than inline YAML, in a multibranch Pipeline you could use: yamlFile 'jenkins-pod.yaml'
-            // Or, to avoid YAML:
-            // containerTemplate {
-            //     name 'shell'
-            //     image 'ubuntu'
-            //     command 'sleep'
-            //     args 'infinity'
-            // }
             yaml '''
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: shell
-    image: ubuntu
-    command:
-    - sleep
-    args:
-    - infinity
-'''
-            // Can also wrap individual steps:
-            // container('shell') {
-            //     sh 'hostname'
-            // }
-            defaultContainer 'shell'
+                apiVersion: v1
+                kind: Pod
+                spec:
+                  containers:
+                  - name: shell
+                    image: ubuntu
+                    command:
+                    - sleep
+                    args:
+                    - infinity
+                '''
+             defaultContainer 'shell'
         }
+    }
+    options {
+        // Timeout counter starts AFTER agent is allocated
+        timeout(time: timeouit, unit: 'SECONDS')
     }
     stages {
         stage('Main') {
@@ -67,7 +61,8 @@ spec:
                 echo "${repo}"
                 echo "${id}"
                 echo "${key}"
-                echo "${repoMap.repo}"
+                echo "${timeout}"
+                //echo "${repoMap.repo}"
             }
         }
     }
