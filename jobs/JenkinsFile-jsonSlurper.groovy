@@ -11,7 +11,7 @@ def pipelineProperties = libraryResource 'json/pipelineProperties.json'
 String repo = "";
 String id = "";
 String key = "";
-Integer timeout = 0;
+Integer buildTimeout = 0;
 // ‘checkout scm’ is only available when using “Multibranch Pipeline” or “Pipeline script from SCM”
 //For Git
 def repositoryUrl = scm.userRemoteConfigs[0].url
@@ -26,7 +26,7 @@ new JsonSlurper().parseText(pipelineProperties).each {
         repo = it.repo
         id = it.id
         key = it.key1
-        timeout = it.tinmeout
+        buildTimeout = it.tinmeout
         //HashMaps requires Jenkins Script Approval!
         //repoMap << it
     }
@@ -51,13 +51,14 @@ pipeline {
             defaultContainer 'shell'
         }
     }
+    options {
+        //Requires plugin https://github.com/jenkinsci/build-timeout-plugin
+        timeout(time: 12, unit: 'SECONDS')
+    }
     stages {
         stage('Main') {
 
-            options {
-                //Requires plugin https://github.com/jenkinsci/build-timeout-plugin
-                timeout(time: 12, unit: 'SECONDS')
-            }
+
             steps {
                 sh 'hostname'
                 echo "${repo}"
