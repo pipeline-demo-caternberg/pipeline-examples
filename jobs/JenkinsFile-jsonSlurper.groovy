@@ -15,9 +15,10 @@ Integer timeout = 0;
 // ‘checkout scm’ is only available when using “Multibranch Pipeline” or “Pipeline script from SCM”
 //For Git
 def repositoryUrl = scm.userRemoteConfigs[0].url
-print repositoryUrl
 //For SVN
 //def repositoryUrl = scm.locations[0].remote
+print repositoryUrl
+
 new JsonSlurper().parseText(pipelineProperties).each {
     print it.repo
     //if (it.repo == "repo1") {
@@ -53,7 +54,7 @@ pipeline {
     stages {
         stage('Main') {
             steps {
-                timeout(time: timeout, unit: 'SECONDS') {
+                timeout(time: "${timeout}", unit: 'SECONDS') {
                     sh 'hostname'
                     echo "${repo}"
                     echo "${id}"
