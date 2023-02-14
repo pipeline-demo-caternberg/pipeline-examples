@@ -27,7 +27,7 @@ new JsonSlurper().parseText(pipelineProperties).each {
         repo = it.repo
         id = it.id
         key = it.key1
-        buildTimeout = it.tinmeout
+        buildTimeout = it.timeout
         //HashMaps requires Jenkins Script Approval!
         //repoMap << it
     }
