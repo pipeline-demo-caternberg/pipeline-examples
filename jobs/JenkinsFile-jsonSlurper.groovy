@@ -31,7 +31,7 @@ new JsonSlurper().parseText(pipelineProperties).each {
         //repoMap << it
     }
 }
-println repoMap
+//println repoMap
 
 pipeline {
     agent {
