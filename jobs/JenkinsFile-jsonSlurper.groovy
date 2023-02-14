@@ -54,7 +54,8 @@ pipeline {
     stages {
         stage('Main') {
             steps {
-                timeout(time: "${timeout}", unit: 'SECONDS') {
+                //timeout(time: "${timeout}", unit: 'SECONDS') {
+                timeout(time: 12, unit: 'SECONDS') {
                     sh 'hostname'
                     echo "${repo}"
                     echo "${id}"
