@@ -11,7 +11,7 @@ def pipelineProperties = libraryResource 'json/pipelineProperties.json'
 String repo = "";
 String id = "";
 String key = "";
-Integer buildTimeout = 0;
+String buildTimeout = "";
 // ‘checkout scm’ is only available when using “Multibranch Pipeline” or “Pipeline script from SCM”
 //For Git
 def repositoryUrl = scm.userRemoteConfigs[0].url
