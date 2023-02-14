@@ -53,7 +53,7 @@ pipeline {
     }
     options {
         //Requires plugin https://github.com/jenkinsci/build-timeout-plugin
-        timeout(time: 12, unit: 'SECONDS')
+        timeout(time: buildTimeout, unit: 'SECONDS')
     }
     stages {
         stage('Main') {
@@ -64,7 +64,7 @@ pipeline {
                 echo "${repo}"
                 echo "${id}"
                 echo "${key}"
-                echo "${timeout}"
+                echo "${buildTimeout}"
                 //echo "${repoMap.repo}"
             }
         }
