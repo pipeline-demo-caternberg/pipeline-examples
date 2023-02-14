@@ -5,7 +5,7 @@ def pipelineProperties = libraryResource 'json/pipelineProperties.json'
 //print pipelineProperties
 
 //HashMaps requires Jenkins Script Approval!
-LinkedHashMap repoMap = new LinkedHashMap();
+//LinkedHashMap repoMap = new LinkedHashMap();
 
 //Strings doesnt require Jenkins Script Approval!, so this should be preferred
 String repo = "";
@@ -20,18 +20,19 @@ def repositoryUrl = scm.userRemoteConfigs[0].url
 print repositoryUrl
 
 new JsonSlurper().parseText(pipelineProperties).each {
-    print it.repo
+
     //if (it.repo == "repo1") {
     if (it.repo == repositoryUrl) {
+        println it
         repo = it.repo
         id = it.id
         key = it.key1
         buildTimeout = it.tinmeout
         //HashMaps requires Jenkins Script Approval!
-        repoMap << it
+        //repoMap << it
     }
 }
-println repoMap
+
 
 pipeline {
     agent {
