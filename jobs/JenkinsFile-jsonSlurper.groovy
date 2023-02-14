@@ -53,20 +53,19 @@ pipeline {
     }
     stages {
         stage('Main') {
+
             options {
-                timeout(time: 3, unit: "SECONDS")
+                //Requires plugin https://github.com/jenkinsci/build-timeout-plugin
+                timeout(time: timeout, unit: "SECONDS")
             }
             steps {
-                //timeout(time: "${timeout}", unit: 'SECONDS') {
-
-                    sh 'hostname'
-                    echo "${repo}"
-                    echo "${id}"
-                    echo "${key}"
-                    echo "${timeout}"
-                    //echo "${repoMap.repo}"
-                }
-
+                sh 'hostname'
+                echo "${repo}"
+                echo "${id}"
+                echo "${key}"
+                echo "${timeout}"
+                //echo "${repoMap.repo}"
+            }
         }
     }
 }
