@@ -56,7 +56,7 @@ pipeline {
 
             options {
                 //Requires plugin https://github.com/jenkinsci/build-timeout-plugin
-                timeout(time: timeout, unit: "SECONDS")
+                timeout(time: 12, unit: 'SECONDS')
             }
             steps {
                 sh 'hostname'
