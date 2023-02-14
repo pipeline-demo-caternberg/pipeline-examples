@@ -47,25 +47,20 @@ pipeline {
                     args:
                     - infinity
                 '''
-             defaultContainer 'shell'
+            defaultContainer 'shell'
         }
     }
-    script {
-        options {
-            // Timeout counter starts AFTER agent is allocated
-            timeout(time: "${timeouit}", unit: 'SECONDS')
-        }
-    }
-
     stages {
         stage('Main') {
             steps {
-                sh 'hostname'
-                echo "${repo}"
-                echo "${id}"
-                echo "${key}"
-                echo "${timeout}"
-                //echo "${repoMap.repo}"
+                timeout(time: timeout, unit: 'SECONDS') {
+                    sh 'hostname'
+                    echo "${repo}"
+                    echo "${id}"
+                    echo "${key}"
+                    echo "${timeout}"
+                    //echo "${repoMap.repo}"
+                }
             }
         }
     }
