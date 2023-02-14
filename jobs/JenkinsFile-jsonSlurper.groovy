@@ -50,10 +50,13 @@ pipeline {
              defaultContainer 'shell'
         }
     }
-    options {
-        // Timeout counter starts AFTER agent is allocated
-        timeout(time: "${timeouit}", unit: 'SECONDS')
+    script {
+        options {
+            // Timeout counter starts AFTER agent is allocated
+            timeout(time: "${timeouit}", unit: 'SECONDS')
+        }ad
     }
+
     stages {
         stage('Main') {
             steps {
