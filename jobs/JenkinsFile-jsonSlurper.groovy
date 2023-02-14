@@ -4,15 +4,18 @@ import groovy.json.JsonSlurper;
 def pipelineProperties = libraryResource 'json/pipelineProperties.json'
 //print pipelineProperties
 
+//Variables need to serializable
+
 //HashMaps requires Jenkins Script Approval!
 //LinkedHashMap repoMap = new LinkedHashMap();
 
-//Strings doesnt require Jenkins Script Approval!, so this should be preferred
+//Strings do not require Jenkins Script Approval!, so this should be preferred instead of HashMap
 String repo = "";
 String id = "";
 String key = "";
 String buildTimeout = "";
-// ‘checkout scm’ is only available when using “Multibranch Pipeline” or “Pipeline script from SCM”
+
+//‘checkout scm’ is only available when using “Multibranch Pipeline” or “Pipeline script from SCM”
 //For Git
 def repositoryUrl = scm.userRemoteConfigs[0].url
 //For SVN
@@ -20,7 +23,6 @@ def repositoryUrl = scm.userRemoteConfigs[0].url
 print repositoryUrl
 
 new JsonSlurper().parseText(pipelineProperties).each {
-
     //if (it.repo == "repo1") {
     if (it.repo == repositoryUrl) {
         println it
@@ -28,11 +30,10 @@ new JsonSlurper().parseText(pipelineProperties).each {
         id = it.id
         key = it.key1
         buildTimeout = it.timeout
-        //HashMaps requires Jenkins Script Approval!
+        //HashMaps requires Jenkins Script Approval! Do not use it!
         //repoMap << it
     }
 }
-
 
 pipeline {
     agent {
@@ -54,12 +55,11 @@ pipeline {
     }
     options {
         //Requires plugin https://github.com/jenkinsci/build-timeout-plugin
+        //Variable from json is used here
         timeout(time: buildTimeout, unit: 'SECONDS')
     }
     stages {
         stage('Main') {
-
-
             steps {
                 sh 'hostname'
                 echo "${repo}"
