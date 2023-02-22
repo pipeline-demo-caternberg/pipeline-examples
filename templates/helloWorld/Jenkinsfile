@@ -13,6 +13,7 @@ pipeline {
         stage('Hello') {
             steps {
                 sh 'hostname'
+                echo "DAS IST EIN UPDATE"
                 helloWorld "${firstname}"
             }
         }
