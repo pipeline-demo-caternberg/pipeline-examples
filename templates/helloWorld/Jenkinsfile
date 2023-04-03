@@ -13,7 +13,6 @@ pipeline {
         stage('Hello') {
             steps {
                 sh 'hostname'
-                echo "DAS IST EIN UPDATE"
                 helloWorld "${firstname}"
             }
         }
@@ -23,11 +22,5 @@ pipeline {
                 helloWorld "${firstname}"
             }
         }
-          stage('Hello 3') {
-                    steps {
-                        sh 'hostname'
-                        helloWorld "${firstname}"
-                    }
-                }
     }
 }
