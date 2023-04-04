@@ -7,7 +7,7 @@ def call() {
     def names = jobNames()
     for (i = 0; i < names.size(); i++) {
        // build job: names[i], wait: false
-        echo job: names[i]
+        echo "job: $names[i]"
     }
 }
 
