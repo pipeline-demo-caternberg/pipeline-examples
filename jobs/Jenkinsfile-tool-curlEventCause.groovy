@@ -2,7 +2,7 @@
 library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
 def ostools = libraryResource 'podtemplates/podTemplate-os-tools.yaml'
 //TDO: move token to credentials store!
-def adminToken = "admin:11d2b842e59277c949c1cd2e2aa1497c6a"
+def adminToken = "XXX:YYY"
 pipeline {
     agent {
         kubernetes {
