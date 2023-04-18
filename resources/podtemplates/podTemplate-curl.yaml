@@ -2,10 +2,6 @@ kind: Pod
 metadata:
   name: cloudbees-core
 spec:
-  hostAliases:
-    - ip: "35.229.104.122"
-      hostnames:
-        - "sda.acaternberg.flow-training.beescloud.com"
   containers:
     - name: custom-agent
       image: curlimages/curl:latest
