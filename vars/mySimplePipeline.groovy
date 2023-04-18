@@ -8,7 +8,7 @@ def call(Map pipelineParams) {
     pipeline {
         agent {
             kubernetes {
-                yamlFile 'resources/yaml/podTemplate-curl.yaml'
+                yamlFile 'resources/podtemplates/podTemplate-curl.yaml'
             }
         }
         stages {
