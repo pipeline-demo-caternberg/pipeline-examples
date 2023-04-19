@@ -18,5 +18,12 @@ pipeline {
                 sh "./parametrizedscript.sh -b test1 -c test2"
             }
         }
+          stage('Stage2') {
+              steps {
+                  //sh "${get_resource_dir()}/scripts/parametrizedscript.sh"
+                  sh libraryResource("util/shell/test.sh") "MYTESTPARAM"
+              }
+          }
+
     }
 }
