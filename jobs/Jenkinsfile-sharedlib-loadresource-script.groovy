@@ -22,12 +22,12 @@ pipeline {
               steps {
 
                   // get shell from libraryResource, and then make a file on /dev/shm/myfiles
-                 sh "mkdir /dev/shm/myfiles"
-                  writeFile file:"/dev/shm/myfiles/parametrizedscript.sh", text:libraryResource("scripts/parametrizedscript.sh")
+
+                  writeFile file:"/tmp/parametrizedscript.sh", text:libraryResource("scripts/parametrizedscript.sh")
                   // add execute permission
-                  sh "chmod +x /dev/shm/myfiles/*.sh && ls -l /dev/shm/myfiles"
+                  sh "chmod +x /tmp/*.sh && ls -l /tmp/myfiles"
                   // run shell with params
-                  sh "/dev/shm/myfiles/parametrizedscript.sh -b test1 -c test2"
+                  sh "/tmp/parametrizedscript.sh -b test1 -c test2"
               }
           }
           stage('Stage3') {
