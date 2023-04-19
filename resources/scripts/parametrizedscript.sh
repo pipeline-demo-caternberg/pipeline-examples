@@ -5,3 +5,4 @@ TODAY=$(date +"%Y%m%d%H%M%S")
 echo ${TODAY}
 echo ${BUILD_NUMBER}
 echo ${1}
+echo ${MYTESTPARAM}
