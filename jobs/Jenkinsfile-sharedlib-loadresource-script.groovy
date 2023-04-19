@@ -19,6 +19,18 @@ pipeline {
             }
         }
           stage('Stage2') {
+              steps {
+
+                  // get shell from libraryResource, and then make a file on /dev/shm/myfiles
+                 sh "mkdir /dev/shm/myfiles"
+                  writeFile file:"/dev/shm/myfiles/parametrizedscript.sh", text:libraryResource("scripts/parametrizedscript.sh")
+                  // add execute permission
+                  sh "chmod +x /dev/shm/myfiles/*.sh && ls -l /dev/shm/myfiles"
+                  // run shell with params
+                  sh "/dev/shm/myfiles/parametrizedscript.sh -b test1 -c test2"
+              }
+          }
+          stage('Stage3') {
               environment{
                   MYTESTPARAM="MYTESTPARAMVALUE"
               }
