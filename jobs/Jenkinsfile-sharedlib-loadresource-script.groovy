@@ -25,7 +25,7 @@ pipeline {
 
                   writeFile file:"/tmp/parametrizedscript.sh", text:libraryResource("scripts/parametrizedscript.sh")
                   // add execute permission
-                  sh "chmod +x /tmp/*.sh && ls -l /tmp/myfiles"
+                  sh "chmod +x /tmp/*.sh && ls -l /tmp/"
                   // run shell with params
                   sh "/tmp/parametrizedscript.sh -b test1 -c test2"
               }
