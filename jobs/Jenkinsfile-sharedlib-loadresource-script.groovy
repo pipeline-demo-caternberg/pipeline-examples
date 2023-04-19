@@ -19,9 +19,12 @@ pipeline {
             }
         }
           stage('Stage2') {
+              environment{
+                  MYTESTPARAM="MYTESTPARAMVALUE"
+              }
               steps {
                   //sh "${get_resource_dir()}/scripts/parametrizedscript.sh"
-                  sh libraryResource("scripts/parametrizedscript.sh MYTESTPARAM")
+                  sh libraryResource("scripts/parametrizedscript.sh")
               }
           }
 
