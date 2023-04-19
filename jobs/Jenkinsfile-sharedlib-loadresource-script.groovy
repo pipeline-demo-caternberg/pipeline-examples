@@ -15,7 +15,7 @@ pipeline {
                 // add execute permission
                 sh "chmod +x *.sh && ls -l"
                 // run shell with params
-                sh "./parametrizedscript -b test1 -c test2"
+                sh "./parametrizedscript.sh -b test1 -c test2"
             }
         }
     }
