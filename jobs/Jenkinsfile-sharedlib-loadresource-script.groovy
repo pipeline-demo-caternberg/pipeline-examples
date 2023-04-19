@@ -20,9 +20,7 @@ pipeline {
         }
           stage('Stage2') {
               steps {
-
                   // get shell from libraryResource, and then make a file on /dev/shm/myfiles
-
                   writeFile file:"/tmp/parametrizedscript.sh", text:libraryResource("scripts/parametrizedscript.sh")
                   // add execute permission
                   sh "chmod +x /tmp/*.sh && ls -l /tmp/"
