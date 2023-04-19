@@ -21,7 +21,7 @@ pipeline {
           stage('Stage2') {
               steps {
                   //sh "${get_resource_dir()}/scripts/parametrizedscript.sh"
-                  sh libraryResource("util/shell/test.sh") "MYTESTPARAM"
+                  sh libraryResource("scripts/parametrizedscript.sh") "MYTESTPARAM"
               }
           }
 
