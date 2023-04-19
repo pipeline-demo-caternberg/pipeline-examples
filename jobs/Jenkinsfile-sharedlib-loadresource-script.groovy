@@ -11,7 +11,7 @@ pipeline {
             steps {
                 //sh "${get_resource_dir()}/scripts/parametrizedscript.sh"
                 // get shell from libraryResource, and then make a file on workspace
-                writeFile file:'parametrizedscript.sh', text:libraryResource("scripts/scripts/parametrizedscript.sh")
+                writeFile file:'parametrizedscript.sh', text:libraryResource("scripts/parametrizedscript.sh")
                 // add execute permission
                 //sh "chmod +x *.sh"
                 // run shell with params
