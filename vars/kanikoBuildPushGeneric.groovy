@@ -1,5 +1,5 @@
 // vars/kanikoBuildPush.groovy
-def call(String imageName, String imageTag = env.BUILD_NUMBER, String gcpProject = "core-workshop", String target = ".", String dockerFile="Dockerfile.multistagebuild-kaniko-example", Closure body) {
+def call(String imageName, String imageTag = env.BUILD_NUMBER, String gcpProject = "core-workshop", String target = ".", String dockerFile="Dockerfile.Xvfb.multistagebuild-kaniko-example", Closure body) {
   def dockerReg = "gcr.io/${gcpProject}"
   def label = "kaniko-${UUID.randomUUID().toString()}"
   def podYaml = libraryResource 'podtemplates/dockerBuildPush.yml'
