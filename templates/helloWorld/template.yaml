@@ -5,3 +5,5 @@ description: Heloo World Template
 parameters:
   - name: firstname
     displayName: your firstname
+  - name: gitUrl
+    displayName: your giturl
