@@ -4,11 +4,11 @@ pipeline {
         stage('Stage Stash') {
             agent {
                 kubernetes {
-                    yamlFile 'resources/podtemplates/podTemplate-os-tools.yaml'
+                    yamlFile 'resources/podTemplates/podTemplate-maven.yaml'
                 }
             }
             steps {
-                container('curl') {
+                container('maven') {
                     // checkout scm
                     // sh 'make'
                     sh 'echo Some value from Stage1: $BUILD_NUMBER > buildnumber.txt'
