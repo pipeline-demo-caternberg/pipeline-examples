@@ -11,9 +11,10 @@ pipeline {
                 container('maven') {
                     // checkout scm
                     // sh 'make'
-                    sh 'echo Some value from Stage1: $BUILD_NUMBER > buildnumber.txt'
+                    //sh 'echo Some value from Stage1: $BUILD_NUMBER > buildnumber.txt'
                    //sh "for i in {1..50}; do touch  testfile-$i ; done"
-                    stash includes: '**/buildnumber.txt', name: 'testfile'
+                   //stash includes: '**/buildnumber.txt', name: 'testfile'
+                   stash includes: '**/*', name: 'testfiles'
                 }
             }
         }
@@ -25,9 +26,9 @@ pipeline {
             }
             steps {
                 container('maven') {
-                    unstash 'testfile'
+                    unstash 'testfiles'
                     sh 'ls -l'
-                    sh 'cat buildnumber.txt'
+                    //sh 'cat buildnumber.txt'
                 }
             }
         }
