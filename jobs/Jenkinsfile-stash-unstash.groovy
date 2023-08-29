@@ -12,7 +12,7 @@ pipeline {
                     // checkout scm
                     // sh 'make'
                    // sh 'echo Some value from Stage1: $BUILD_NUMBER > buildnumber.txt'
-                   sh "for i in {1..50}; do touch  testfile-${i}.txt; done"
+                   sh "for i in {1..50}; do touch  testfile-$i ; done"
                     stash includes: '**/testfile-*.txt', name: 'testfile'
                 }
             }
