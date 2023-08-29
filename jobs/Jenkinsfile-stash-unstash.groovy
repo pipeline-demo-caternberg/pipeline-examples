@@ -14,6 +14,7 @@ pipeline {
                     //sh 'echo Some value from Stage1: $BUILD_NUMBER > buildnumber.txt'
                    //sh "for i in {1..50}; do touch  testfile-$i ; done"
                    //stash includes: '**/buildnumber.txt', name: 'testfile'
+                    sh "du -hs ."
                    stash includes: '**/*', name: 'testfiles'
                 }
             }
@@ -27,7 +28,7 @@ pipeline {
             steps {
                 container('maven') {
                     unstash 'testfiles'
-                    sh 'ls -l'
+                    sh 'ls -lR'
                     //sh 'cat buildnumber.txt'
                 }
             }
