@@ -6,6 +6,15 @@
 * Pipeline Maven 
 * TODO add other that are required for this Pipeline 
 
+# kaniko
+Create dockersecrets
+
+```
+kubectl delete secret docker-credentials
+kubectl create secret docker-registry docker-credentials   --docker-username=$DOCKER_REGISTRY_USER --docker-password=$DOCKER_REGISTRY_PASSWORD --docker-email=$DOCKER_EMAIL
+
+```
+
 # Maven setting 
 * Install the Configfile-provider plugin
 * add a global maven config with id : global-vane-settings
