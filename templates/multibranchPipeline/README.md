@@ -6,6 +6,8 @@
 * Pipeline Maven 
 * TODO add other that are required for this Pipeline 
 
+
+
 # kaniko
 Create dockersecrets
 
@@ -14,6 +16,13 @@ kubectl delete secret docker-credentials
 kubectl create secret docker-registry docker-credentials   --docker-username=$DOCKER_REGISTRY_USER --docker-password=$DOCKER_REGISTRY_PASSWORD --docker-email=$DOCKER_EMAIL
 
 ```
+
+# Maven workspace caching 
+
+TODO
+Set up workspace caching in S3
+https://docs.cloudbees.com/docs/cloudbees-ci/latest/pipelines/cloudbees-cache-step
+
 
 # Maven setting 
 * Install the Configfile-provider plugin
