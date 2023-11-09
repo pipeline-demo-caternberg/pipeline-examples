@@ -1,0 +1,11 @@
+type: pipeline-template
+version: 1
+name: SonarScanner
+description: SonarScanner Template
+parameters:
+  - name: gitUrl
+    displayName: Git Repoistory
+    type: string
+  - name: gitCredentialID
+    displayName: gitCredentialID
+    type: CREDENTIALS

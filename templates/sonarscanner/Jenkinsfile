@@ -1,0 +1,29 @@
+pipeline {
+  agent {
+     node { 
+        label 'testlabel'
+        } 
+  }
+  stages {
+    stage('Checkout Scm') {
+      steps {
+        git(url: "${gitUrl}", credentialsId: "${gitCredentialID}")
+      }
+    }
+
+    stage('SonarAnalysis') {
+        withSonarQubeEnv("sonarqube") { 
+         sh "sonar-scanner -Dproject.settings=./sonar-project.properties"
+         }
+         echo 'No converter for Builder: hudson.plugins.sonar.SonarRunnerBuilder'
+      }
+    }
+
+  }
+  options {
+    buildBlocker(useBuildBlocker: false, blockLevel: 'GLOBAL', scanQueueFor: 'DISABLED')
+  }
+  triggers {
+    pollSCM('* * * * *')
+  }
+}
