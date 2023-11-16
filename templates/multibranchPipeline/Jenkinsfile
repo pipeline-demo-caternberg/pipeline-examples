@@ -48,6 +48,8 @@ pipeline {
                         ansiColor('xterm') {
                           //  sh "${MVN_COMMAND_DEPLOY} -s ${MAVEN_SETTINGS_XML}"
                             sh "${MVN_COMMAND_DEPLOY}"
+                            //https://docs.cloudbees.com/docs/cloudbees-ci/latest/pipelines/cloudbees-cache-step
+                            //writeCache name: 'maven-repo', includes: '.m2/repository/**', excludes: '**SNAPSHOT**'
                         }
                         junit '**/target/surefire-reports/TEST-*.xml'
                         archive '**/target/*.jar'

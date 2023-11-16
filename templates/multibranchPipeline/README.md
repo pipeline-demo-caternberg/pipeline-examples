@@ -1,5 +1,9 @@
 # Required Plugins
 * Configfile provider
+* CloudBees Workspace Caching
+  * https://github.com/jenkinsci/artifact-manager-s3-plugin
+  * https://docs.cloudbees.com/docs/release-notes/latest/plugins/cloudbees-s3-cache-plugin
+  * https://docs.cloudbees.com/docs/release-notes/latest/plugins/cloudbees-cache-step-plugin
 * WarningsNextNG
 * Asci-code
 * Timestamper
