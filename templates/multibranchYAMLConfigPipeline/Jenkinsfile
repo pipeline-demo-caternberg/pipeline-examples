@@ -78,7 +78,7 @@ pipeline {
         stage('ReadAndExecSteps') {
             steps {
                 //Execute custom steps
-                execCommonSteps("build")
+                //execCommonSteps("build")
 
                 //Execute custom steps
                 execCustomSteps("build")
