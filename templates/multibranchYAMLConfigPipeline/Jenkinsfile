@@ -25,9 +25,21 @@ def execCustomSteps(stageName) {
 pipeline {
     agent {
         kubernetes {
-            defaultContainer "build"
-            //https://docs.cloudbees.com/docs/cloudbees-ci-kb/latest/cloudbees-ci-on-modern-cloud-platforms/kubernetes-using-external-pod-description-yaml
-            yamlFile "resources/podtemplates/podTemplate-maven.yaml"
+            defaultContainer "maven"
+            yaml """
+             kind: Pod
+             metadata:
+               name: cloudbees-core-agent
+             spec:
+               containers:
+                 - name: maven
+                   image: 3.9.5-eclipse-temurin-17-alpine
+                   runAsUser: 1000
+                   command:
+                     - cat
+                   tty: true
+                   workingDir: "/home/jenkins/agent"
+             """
         }
     }
     stages {
