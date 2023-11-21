@@ -33,7 +33,7 @@ pipeline {
              spec:
                containers:
                  - name: maven
-                   image: 3.9.5-eclipse-temurin-17-alpine
+                   image: maven:3.9.5-eclipse-temurin-17-alpine
                    runAsUser: 1000
                    command:
                      - cat
