@@ -1,0 +1,21 @@
+kind: Pod
+metadata:
+  name: maven
+spec:
+  containers:
+    - name: maven
+      image: 3.9.5-eclipse-temurin-17-alpine
+      #runAsUser: 1000
+      command:
+        - cat
+      tty: true
+      workingDir: "/home/jenkins/agent"
+    - name: sonarscanner
+      image: sonarsource/sonar-scanner-cli
+      runAsUser: 1000
+      command:
+        - cat
+      tty: true
+      workingDir: "/home/jenkins/agent"
+      securityContext:
+        runAsUser: 1000

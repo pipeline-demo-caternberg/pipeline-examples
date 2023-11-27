@@ -1,0 +1,26 @@
+type: pipeline-template
+version: 1
+name: Multibranch Pipeline Template
+description: Multibranch Pipeline Template
+templateType: MULTIBRANCH
+parameters:
+  - name: repoName
+    displayName: Git Repoistory
+    type: string
+    defaultValue: spring-boot-demo
+  - name: organsisation
+    displayName: GH organsisation
+    type: string
+    defaultValue: pipeline-demo-caternberg
+  - name: githubToken
+    displayName: GitHubUserToken
+    type: CREDENTIALS
+    defaultValue: githubuseraccesstoken
+#see https://docs.cloudbees.com/docs/admin-resources/latest/pipeline-templates-user-guide/managing-multibranch-pipeline-options#_example
+multibranch:
+  branchSource:
+    github:
+      repoOwner: ${organsisation}
+      repository: ${repoName}
+      credentialsId: ${githubToken}
+  markerFile: pom.xml
