@@ -18,10 +18,7 @@ pipeline {
             }
         }
     }
-
-
     stage('Sonar') {
-
         options {
             skipDefaultCheckout(true)
         }
