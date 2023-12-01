@@ -60,7 +60,7 @@ pipeline {
                 container(name: 'kaniko', shell: '/busybox/sh') {
                     withEnv(['PATH+EXTRA=/busybox:/kaniko']) {
                         sh '''#!/busybox/sh
-                              /kaniko/executor  --dockerfile $(pwd)/Dockerfile --insecure --skip-tls-verify --cache=false  --context $(pwd) --destination spring-boot-demo:${GIT_COMMIT_SHORT}
+                              /kaniko/executor  --dockerfile $(pwd)/Dockerfile --insecure --skip-tls-verify --cache=false  --context $(pwd) --destination caternberg/spring-boot-demo:${GIT_COMMIT_SHORT}
                           '''
                     }
                 }
