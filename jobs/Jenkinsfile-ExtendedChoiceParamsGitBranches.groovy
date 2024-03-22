@@ -6,7 +6,6 @@ pipeline {
         activeChoice(
                 name: 'GIT_BRANCH',
                 description: 'Select Git branch',
-                choices: [],
                 script: [
                         // Define Groovy script to fetch Git branch names dynamically
                         groovyScript: [
